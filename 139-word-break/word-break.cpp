@@ -8,8 +8,11 @@ class Solution {
         }
         for(int i=ind;i<s.length();i++){
             if(st.find(s.substr(ind,i-ind+1))!=st.end()){ 
-                if( badhiya(s,st,i+1,dp)){
+                if(badhiya(s,st,i+1,dp)){
                     return dp[ind]=1;
+                }
+                else{
+                    dp[ind]=0;
                 }
             }
         }
