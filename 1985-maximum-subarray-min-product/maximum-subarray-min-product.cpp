@@ -3,7 +3,7 @@ public:
     int maxSumMinProduct(vector<int>&A) {
         long long mod = 1e9+7, N = A.size(), ans = 0;
         vector<long long>sum(N + 1);
-        for (int i = 0; i < N; ++i){
+        for (int i = 0; i < N;i++){
             sum[i + 1]=sum[i] + A[i];
         }
 
