@@ -5,17 +5,19 @@ public:
         vector<long long> sum(N + 1);
         for (int i = 0; i < N; ++i) sum[i + 1] = sum[i] + A[i];
         vector<int> prev(N, -1), next(N, -1); 
-        vector<int> s;
+        stack<int> s;
         for (int i = 0; i < N; ++i) { 
-            while (s.size() && A[s.back()] >= A[i]) s.pop_back();
-            if (s.size()) prev[i] = s.back();
-            s.push_back(i);
+            while (s.size() && A[s.top()] >= A[i]) s.pop();
+            if (!s.empty()) prev[i] = s.top();
+            s.push(i);
         }
-        s.clear();
+        while(!s.empty()){
+            s.pop();
+        }
         for (int i = N - 1; i >= 0; --i) {
-            while (s.size() && A[s.back()] >= A[i]) s.pop_back();
-            if (s.size()) next[i] = s.back();
-            s.push_back(i);
+            while (!s.empty() && A[s.top()] >= A[i]) s.pop();
+            if (!s.empty()) next[i] = s.top();
+            s.push(i);
         }
         for (int i = 0; i < N; ++i) {
             long long s = next[i] == -1 ? sum.back() : sum[next[i]];
