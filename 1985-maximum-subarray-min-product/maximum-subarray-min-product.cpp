@@ -2,9 +2,10 @@ class Solution {
 public:
     int maxSumMinProduct(vector<int>&A) {
         long long mod = 1e9+7, N = A.size(), ans = 0;
-        vector<long long>sum(N + 1);
-        for (int i = 0; i < N;i++){
-            sum[i + 1]=sum[i] + A[i];
+        vector<long long>sum(N);
+        sum[0]=A[0];
+        for (int i =1; i < N;i++){
+            sum[i]=sum[i-1] + A[i];
         }
 
         vector<int> prev(N, -1), next(N, -1); 
@@ -32,15 +33,19 @@ public:
             s.push(i);
         }
 
+        for (int i = 0; i < N; ++i) {
+            cout<<prev[i]<<" "<<next[i]<<" ";
+        }
 
         for (int i = 0; i < N; ++i) {
+
             long long s = next[i];
             if(s==-1){
                 s=sum.back();
             }
-            else s= sum[next[i]];
+            else s= sum[next[i]-1];
             if (prev[i] != -1) {
-                s -= sum[prev[i]+1];
+                s -= sum[prev[i]];
             }
             ans = max(ans, (long long) A[i] * s);
         }
