@@ -29,7 +29,7 @@ public:
         }
         vector<int>dis(n,0);
         vector<int>par(n,0);
-        make(dis,par,0,0,adj,-1);
+        make(dis,par,0,0,adj,0);
         int len=dis[bob]-dis[0]+1;
         bool odd=false;
         if(len%2!=0)odd=true;
