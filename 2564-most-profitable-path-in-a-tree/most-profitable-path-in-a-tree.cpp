@@ -17,7 +17,7 @@ class Solution {
             }
         }
         if(maxi==-INT_MAX)return am;
-        else return am+maxi;
+        return am+maxi;
     }
 public:
     int mostProfitablePath(vector<vector<int>>& edges, int bob, vector<int>& amount) {
