@@ -1,9 +1,9 @@
 class Solution {
-    void make(vector<int>&dis,vector<int>&par,int distance,int node,vector<int>adj[],int vis){
+    void make(vector<int>&dis,vector<int>&par,int distance,int node,vector<int>adj[],int parent){
         dis[node]=distance;
-        par[node]=vis;
+        par[node]=parent;
         for(auto it:adj[node]){
-            if(it!=vis){
+            if(it!=parent){
                 make(dis,par,distance+1,it,adj,node);
             }
         }
@@ -29,7 +29,7 @@ public:
         }
         vector<int>dis(n,0);
         vector<int>par(n,0);
-        make(dis,par,0,0,adj,0);
+        make(dis,par,0,0,adj,-1);
         int len=dis[bob]-dis[0]+1;
         bool odd=false;
         if(len%2!=0)odd=true;
