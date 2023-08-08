@@ -8,16 +8,16 @@ class Solution {
             }
         }
     }
-    int dfs2(int u,vector<int>&amount,vector<int>adj[],int p=0){
-        int ret = amount[u];
-        int mxc = -INT_MAX;
-        for(int v:adj[u]){
+    int dfs(int node,vector<int>&amount,vector<int>adj[],int p){
+        int am = amount[node];
+        int maxi = -INT_MAX;
+        for(auto v:adj[node]){
             if(v!=p){
-                mxc= max(mxc,dfs2(v,amount,adj,u));
+                maxi= max(maxi,dfs(v,amount,adj,node));
             }
         }
-        if(mxc==-INT_MAX)return ret;
-        else return ret+mxc;
+        if(maxi==-INT_MAX)return am;
+        else return am+maxi;
     }
 public:
     int mostProfitablePath(vector<vector<int>>& edges, int bob, vector<int>& amount) {
@@ -42,18 +42,6 @@ public:
         if(odd){
             amount[bob]/=2;
         }
-        // int bobdist=0;
-        // int bobnode=bob;
-        // while(bobnode!=0){
-        //     if(dis[bobnode]>bobdist){
-        //         amount[bobnode]=0;
-        //     }
-        //     else if(dis[bobnode]==bobdist){
-        //         amount[bobnode]/=2;
-        //     }
-        //     bobnode=par[bobnode];
-        //     bobdist++;
-        // }
-        return dfs2(0,amount,adj);
+        return dfs(0,amount,adj,0);
     }
 };
