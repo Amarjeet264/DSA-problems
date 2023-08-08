@@ -36,7 +36,6 @@ public:
                     node->right=naya2;
                     naya2->right=r;
                     ha=true;
-                    // break;
                 }
                 if(node->left){
                     q.push(node->left);
