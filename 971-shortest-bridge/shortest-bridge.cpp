@@ -2,14 +2,17 @@ class Solution {
     int dr[4]={-1,0,1,0};
     int dc[4]={0,1,0,-1};
     queue<vector<int>>q;
-    void dfs(int i , int j ,vector<vector<int>>& grid ){
-        if(i<0||i>=grid.size() || j<0 || j>= grid[0].size() || grid[i][j] == 2 || grid[i][j] == 0)return;
-        grid[i][j] = 2;
-        q.push({i,j,0});
-        dfs(i , j-1 , grid );
-        dfs(i , j+1 , grid );
-        dfs(i+1 , j , grid );
-        dfs(i-1 , j , grid );
+    void dfs(int row,int col,vector<vector<int>>&grid){
+        grid[row][col]=2;
+        q.push({row,col,0});
+        for(int i=0;i<4;i++){
+            int nr=row+dr[i];
+            int nc=col+dc[i];
+            if(nr>=0&&nr<grid.size()&&nc>=0&&nc<grid[0].size()&&grid[nr][nc]!=2&&grid[nr][nc]==1){
+                dfs(nr,nc,grid);
+            }
+        }
+        // return;
     }
 public:
     int shortestBridge(vector<vector<int>>& grid) {
