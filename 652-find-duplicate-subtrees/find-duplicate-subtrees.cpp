@@ -16,10 +16,10 @@ class Solution {
         string sl="";
         string sr="";
         if(root->left){
-            sl = find(root->left);
+            sl+= find(root->left);
         }
         if(root->right){
-            sr = find(root->right);
+            sr+= find(root->right);
         }
         string t=to_string(root->val)+"l"+sl+"r"+sr;
         mp[t]++;
