@@ -20,23 +20,23 @@ public:
 */
 
 class Solution {
-    void dfs(Node* curr,Node* node,vector<Node*>&mp){
-        mp[node->val]=node;
+    void dfs(Node* curr,Node* copy,map<int,Node*>&mp){
+        mp[copy->val]=copy;
         for(auto ele:curr->neighbors){
             if(mp[ele->val]==NULL){
                 Node* naya=new Node(ele->val);
-                (node->neighbors).push_back(naya);
+                (copy->neighbors).push_back(naya);
                 dfs(ele,naya,mp);
             }
             else{
-                (node->neighbors).push_back(mp[ele->val]);
+                (copy->neighbors).push_back(mp[ele->val]);
             }
         }
     }
 public:
     Node* cloneGraph(Node* node) {
         if(node==NULL)return node;
-        vector<Node*>mp(1000,NULL);
+        map<int,Node*>mp;
         Node* copy=new Node(node->val);
         mp[node->val]=copy;
         for(auto curr:node->neighbors){
