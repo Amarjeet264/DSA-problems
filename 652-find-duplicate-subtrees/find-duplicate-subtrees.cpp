@@ -15,14 +15,13 @@ class Solution {
     string find(TreeNode* root){
         string sl="";
         string sr="";
-        string curr=to_string(root->val);
         if(root->left){
             sl = find(root->left);
         }
         if(root->right){
             sr = find(root->right);
         }
-        string t=curr+"l"+sl+"r"+sr;
+        string t=to_string(root->val)+"l"+sl+"r"+sr;
         mp[t]++;
         if(mp[t]==2){
             ans.push_back(root);
