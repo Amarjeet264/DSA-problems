@@ -20,35 +20,35 @@ public:
 */
 
 class Solution {
-    void dfs(Node* curr,Node* copy,map<int,Node*>&mp){
-        mp[copy->val]=copy;
-        for(auto ele:curr->neighbors){
-            if(mp[ele->val]==NULL){
-                Node* naya=new Node(ele->val);
+    void dfs(Node* copy,Node* curr,map<int,Node*>&mp){
+        mp[curr->val]=copy;
+        for(auto nayacurr:curr->neighbors){
+            if(mp[nayacurr->val]==NULL){
+                Node* naya=new Node(nayacurr->val);
                 (copy->neighbors).push_back(naya);
-                dfs(ele,naya,mp);
+                dfs(naya,nayacurr,mp);
             }
             else{
-                (copy->neighbors).push_back(mp[ele->val]);
+                (copy->neighbors).push_back(mp[nayacurr->val]);
             }
         }
     }
 public:
     Node* cloneGraph(Node* node) {
-        if(node==NULL)return node;
-        map<int,Node*>mp;
-        Node* copy=new Node(node->val);
-        mp[node->val]=copy;
-        for(auto curr:node->neighbors){
-            if(mp[curr->val]==NULL){
-                Node* naya=new Node(curr->val);
-                (copy->neighbors).push_back(naya);
-                dfs(curr,naya,mp);
-            }
-            else{
-                (copy->neighbors).push_back(mp[curr->val]);
-            }
-        }
-        return copy;
+       if(!node)return nullptr;
+       map<int,Node*>mp;
+       Node* copy= new Node(node->val);
+       mp[node->val]=copy;
+       for(auto curr:node->neighbors){
+           if(mp[curr->val]==NULL){
+               Node* nayicopy=new Node(curr->val);
+               (copy->neighbors).push_back(nayicopy);
+               dfs(nayicopy,curr,mp);
+           }
+           else{
+               (copy->neighbors).push_back(mp[curr->val]);
+           }
+       }
+       return copy;
     }
 };
