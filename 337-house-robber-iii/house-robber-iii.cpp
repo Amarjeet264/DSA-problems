@@ -10,14 +10,13 @@
  * };
  */
 class Solution {  
-    // vector<int>v(2,0);
     vector<int>robs(TreeNode* root){
         if(!root){
             return {0,0};
         }
-        vector<int>left(2,0);
+        vector<int>left;
         left=robs(root->left);
-        vector<int>right(2,0);
+        vector<int>right;
         right=robs(root->right);
         vector<int>ans(2,0);
         ans[0]=root->val+left[1]+right[1];
