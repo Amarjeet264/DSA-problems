@@ -41,7 +41,6 @@ public:
 
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
-        // return NULL;
         if(data.size()==0)
             return NULL;
         
@@ -49,14 +48,13 @@ public:
         string str;
         getline(s, str, ',');
         TreeNode* root=new TreeNode(stoi(str));
-            queue<TreeNode*>q;
-            q.push(root);
+        queue<TreeNode*>q;
+        q.push(root);
         while(!q.empty())
         {
             TreeNode* node=q.front();
             q.pop();
-            
-              getline(s, str, ',');
+            getline(s, str, ',');
             if(str=="#")
             {
                 node->left=NULL;
