@@ -69,6 +69,10 @@ public:
                 }
                 vis[it]=1;
                 q.push(it);
+                cnt++;
+            }
+            if(cnt>2){
+                return false;
             }
         }
         for(int i=0;i<n;i++){
