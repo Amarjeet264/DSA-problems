@@ -12,7 +12,6 @@ class Solution {
                 dfs(nr,nc,grid);
             }
         }
-        // return;
     }
 public:
     int shortestBridge(vector<vector<int>>& grid) {
@@ -31,6 +30,7 @@ public:
                 break;
             }
         }
+        int mini=INT_MAX;
         while(!q.empty()){
             int r=q.front()[0];
             int c=q.front()[1];
@@ -41,7 +41,8 @@ public:
                 int nc=c+dc[k];
                 if(nr>=0&&nr<grid.size()&&nc>=0&&nc<grid[0].size()){
                     if(grid[nr][nc]==1){
-                        return d;
+                        mini=min(mini,d);
+                        continue;
                     }
                     if(grid[nr][nc]==2){
                         continue;
@@ -51,6 +52,6 @@ public:
                 }
             }
         }
-        return 0;
+        return mini;
     }
 };
