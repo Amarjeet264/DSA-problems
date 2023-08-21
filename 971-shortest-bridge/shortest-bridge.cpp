@@ -41,8 +41,7 @@ public:
                 int nc=c+dc[k];
                 if(nr>=0&&nr<grid.size()&&nc>=0&&nc<grid[0].size()){
                     if(grid[nr][nc]==1){
-                        mini=min(mini,d);
-                        continue;
+                        return d;
                     }
                     if(grid[nr][nc]==2){
                         continue;
