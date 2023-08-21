@@ -7,7 +7,7 @@ public:
             mp[offer[i][0]].push_back({offer[i][1],offer[i][2]});
         }
         for(int i=0;i<n;i++){
-            if(i){
+            if(i>0){
                 dp[i]=max(dp[i],dp[i-1]) ;
             }
 
