@@ -2,7 +2,7 @@ class Solution {
 public:
     int maximizeTheProfit(int n, vector<vector<int>>& offer) {
         vector<int>dp(n,0);
-        map<int,vector<pair<int,int>>>mp;
+        unordered_map<int,vector<pair<int,int>>>mp;
         for(int i=0;i<offer.size();i++){
             mp[offer[i][0]].push_back({offer[i][1],offer[i][2]});
         }
