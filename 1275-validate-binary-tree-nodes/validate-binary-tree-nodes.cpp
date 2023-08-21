@@ -51,8 +51,8 @@ public:
         int root=-1;
         for(int i=0;i<n;i++){
             if(in[i]==0){
-                root=i;
-                break;
+                if(root==-1)root=i;
+                else return false;
             }
         }
         if(root==-1)return false;
