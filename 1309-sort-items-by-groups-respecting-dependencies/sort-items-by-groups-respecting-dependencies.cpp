@@ -1,21 +1,11 @@
 class Solution {
-public:
-    vector<int> sortItems(int n, int m, vector<int>& group, vector<vector<int>>& before) {
-        vector<int>adj[n];
-        vector<int>in(n,0);
-        for(int i=0;i<before.size();i++){
-            for(auto it:before[i]){
-                adj[it].push_back(i);
-                in[i]++;
-            }
-        }
+    void topo(vector<int>adj[],vector<int>&in,vector<int>&a){
         queue<int>q;
-        for(int i=0;i<n;i++){
+        for(int i=0;i<in.size();i++){
             if(in[i]==0){
                 q.push(i);
             }
         }
-        vector<int>a;
         while(!q.empty()){
             int node=q.front();
             q.pop();
@@ -27,6 +17,19 @@ public:
                 }
             }
         }
+    }
+public:
+    vector<int> sortItems(int n, int m, vector<int>& group, vector<vector<int>>& before) {
+        vector<int>adj[n];
+        vector<int>in(n,0);
+        for(int i=0;i<before.size();i++){
+            for(auto it:before[i]){
+                adj[it].push_back(i);
+                in[i]++;
+            }
+        }
+        vector<int>a;
+        topo(adj,in,a);
         if(a.size()!=n){
             return {};
         }
