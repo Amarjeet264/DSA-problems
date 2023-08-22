@@ -7,15 +7,12 @@ public:
             if(it[1]+1<=n)
               v[it[1]+1]-=it[2];
         }
-        vector<int>ans(n,0);
-        for(int i=1;i<n+1;i++){
-            ans[i-1]=v[i];
-        }
         int sum=0;
-        for(int i=0;i<n;i++){
-            sum+=ans[i];
-            ans[i]=sum;
+        for(int i=1;i<n+1;i++){
+            sum+=v[i];
+            v[i-1]=sum;
         }
-        return ans;
+        v.pop_back();
+        return v;
     }
 };
