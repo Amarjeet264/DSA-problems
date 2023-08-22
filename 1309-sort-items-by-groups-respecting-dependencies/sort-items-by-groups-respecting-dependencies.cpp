@@ -56,11 +56,9 @@ public:
         queue<int>q1;
         for(int i=0;i<m;i++){
             if(in1[i]==0){
-                // cout<<i<<" ";
                 q1.push(i);
             }
         }
-        // cout<<"dnd"<<" ";
         vector<int>ans;
         while(!q1.empty()){
             int gr=q1.front();
