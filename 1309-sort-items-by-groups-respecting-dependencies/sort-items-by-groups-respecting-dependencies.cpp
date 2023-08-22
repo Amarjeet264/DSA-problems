@@ -56,13 +56,13 @@ public:
         for(int i=0;i<n;i++){
             mp1[grp[a[i]]].push_back(a[i]);
         }
+        vector<int>ans;
         queue<int>q1;
         for(int i=0;i<m;i++){
             if(in1[i]==0){
                 q1.push(i);
             }
         }
-        vector<int>ans;
         while(!q1.empty()){
             int gr=q1.front();
             q1.pop();
