@@ -45,9 +45,7 @@ public:
                             if(j1==j2) value = grid[i][j1];
                             else value = grid[i][j1] + grid[i][j2];
                             if(j1+k<0||j2+l<0||j1+k>=grid[0].size()||j2+l>=grid[0].size()){
-                                value+=-1e8;
-                                maxi=max(maxi,value);
-                                dp[i][j1][j2]= maxi;
+                                
                                 continue;
                             }
                             value+=dp[i+1][j1+k][j2+l];
