@@ -1,7 +1,13 @@
 class Solution {
 int find(int i,int j1,int j2,vector<vector<int>>&grid,vector<vector<vector<int>>>&dp){
-        if(i>=grid.size()-1){
+        if(i>=grid.size()){
             return 0;
+        }
+        if(i==grid.size()-1){
+            if(j1==j2){
+                return grid[i][j1];
+            }
+            return grid[i][j1]+grid[i][j2];
         }
         if(dp[i][j1][j2]!=-1){
             return dp[i][j1][j2];
@@ -13,11 +19,11 @@ int find(int i,int j1,int j2,vector<vector<int>>&grid,vector<vector<vector<int>>
                   continue;
                 }
                 else{
-                    if(j1+k==j2+l){
-                        maxi=max(maxi,grid[i+1][j1+k]+find(i+1,j1+k,j2+l,grid,dp));
+                    if(j1==j2){
+                        maxi=max(maxi,grid[i][j1]+find(i+1,j1+k,j2+l,grid,dp));
                     }
                     else{
-                        maxi=max(maxi,grid[i+1][j1+k]+grid[i+1][j2+l]+find(i+1,j1+k,j2+l,grid,dp));
+                        maxi=max(maxi,grid[i][j1]+grid[i][j2]+find(i+1,j1+k,j2+l,grid,dp));
                     }
                 }
             }
@@ -28,15 +34,7 @@ public:
     int cherryPickup(vector<vector<int>>& grid) {
         int n=grid.size();
         int m=grid[0].size();
-        if(n==0)return 0;
-        int x=0;
-        if(m==1){
-            x=grid[0][0];
-        }
-        else{
-            x=grid[0][0]+grid[0][m-1];
-        }
         vector<vector<vector<int>>>dp(n,vector<vector<int>>(m,vector<int>(m,-1)));
-        return x+ find(0,0,m-1,grid,dp);
+        return  find(0,0,m-1,grid,dp);
     }
 };
