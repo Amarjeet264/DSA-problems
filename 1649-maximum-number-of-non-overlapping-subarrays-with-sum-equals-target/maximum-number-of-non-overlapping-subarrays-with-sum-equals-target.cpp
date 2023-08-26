@@ -9,13 +9,12 @@ public:
         for(int i=0;i<n;i++){
             sum+=nums[i];
             if(mp.find(sum-target)!=mp.end()){
-                ++cnt;
+                cnt++;
                 mp={0};
                 sum=0;
                 continue;
             }
-            // mp[sum]++;
-            else mp.insert(sum);
+            mp.insert(sum);
         }
         return cnt;
     }
