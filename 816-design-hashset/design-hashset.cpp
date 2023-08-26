@@ -1,22 +1,34 @@
 class MyHashSet {
-    unordered_map<int,int>mp;
 public:
+    vector<list<int>>mp;
+    int size=0;
     MyHashSet() {
-        
+        size=100;
+        mp.resize(size);
     }
-    
+    int hash(int key){
+        return key%size;
+    }
+    list<int> :: iterator search(int key){
+        int i=hash(key);
+        return find(mp[i].begin(),mp[i].end(),key);
+    }
     void add(int key) {
-        mp[key]++;
+        if(contains(key))return;
+        int i=hash(key);
+        mp[i].push_back(key);
     }
     
     void remove(int key) {
         if(!contains(key))return;
-        mp.erase(key);
+        int i=hash(key);
+        mp[i].erase(search(key));
     }
     
     bool contains(int key) {
-        if(mp.find(key)==mp.end())return false;
-        return true;
+        int i=hash(key);
+        if(search(key)!=mp[i].end())return true;
+        return false;
     }
 };
 
