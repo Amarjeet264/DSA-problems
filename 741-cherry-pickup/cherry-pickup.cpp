@@ -24,12 +24,7 @@ class Solution {
         else{
             int x=grid[i1][j1];
             int y=grid[i2][j2];
-            // grid[i1][j1]=0;
-            // grid[i2][j2]=0;
             val=x+y;
-            // grid[i1][j1]=x;
-            // grid[i2][j2]=y;
-            // maxi=max(maxi,val);
         }
         val+=max(
         max(find( i1 + 1, j1, i2 + 1, j2,grid), find( i1 + 1, j1, i2 , j2+1,grid)),
