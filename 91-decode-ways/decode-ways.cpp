@@ -21,26 +21,13 @@ class Solution {
     }
 public:
     int numDecodings(string s) {
-        vector<int>dp(s.length()+1,-1);
-        // int i=1;
-        // while(i<=s.length()){
-        //     int one=0;
-        //     int two=0;
-        //     if(s[i-1]!='0'){
-        //         one=dp[i-1];
-        //         i++;
-        //     }
-        //     string x="";
-        //     if(s[i-1]!='0'&&i<=s.length()){
-        //             x+=s[i-1];
-        //             x+=s[i];
-        //             if((stoi(x))<=26){
-        //                 two=dp[i+2];
-        //             }
-        //             i+=2;
-        //     }
-        //      return dp[i]= one+two;
-        // }
-        return decode(0,s,dp);
+        int a = 1, b = s[0] != '0';
+        for(int i = 1; i < s.size(); ++i) {
+            int c = s[i] != '0' ? b : 0;
+            if(s[i - 1] == '1' || (s[i - 1] == '2' && s[i] - '1' + 1 < 7))
+                c += a;
+            a = b; b = c;
+        }
+        return b;
     }
 };
