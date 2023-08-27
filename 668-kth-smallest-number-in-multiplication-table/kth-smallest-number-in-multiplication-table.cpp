@@ -13,7 +13,7 @@ public:
         while(low<high){
             int mid=(low+high)/2;
             int x=count(mid,m,n,k);
-            if(x+1<=k){
+            if(x<k){
                 low=mid+1;
             }
             else{
