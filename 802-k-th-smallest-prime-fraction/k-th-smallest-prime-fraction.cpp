@@ -2,27 +2,38 @@ class Solution {
     int a=0;
     int b=0;
     int count(vector<int>&arr,double mid){
-        int res = 0;
-        for (int i = 0, j = 0; i < arr.size(); i++) {
-            while (j < i && (double)arr[j + 1] / arr[i] <= mid) j++;
-            if ((double)arr[j] / arr[i] <= mid) res += j + 1;
-            if (fabs((double)arr[j] / arr[i] - mid) < 1e-8) {
-                a = arr[j], b = arr[i];
+        int i=0;
+        int j=1;
+        int count=0;
+        double maxf=0;
+        while(j<arr.size()){
+            while((double)arr[i]/arr[j]<=mid){
+                i++;
             }
+            count+=i;
+            if(i>0&&(double)arr[i-1]/arr[j]>maxf){
+                maxf=(double)arr[i-1]/arr[j];
+                a=arr[i-1];
+                b=arr[j];
+            }
+            j++;
         }
-        return res;
+        return count;
     }
 public:
     vector<int> kthSmallestPrimeFraction(vector<int>& arr, int k) {
-        double l=0;
+        double l=(double)arr[0]/arr[arr.size()-1];
         double r=1;
-        while(r-l>1e-8){
+        while(l<r){
             double mid=(l+r)/2;
-            if(count(arr,mid)>=k){
+            if(count(arr,mid)<k){
+                l=mid;
+            }
+            else if(count(arr,mid)>k){
                 r=mid;
             }
             else{
-                l=mid;
+                break;
             }
         }
         return {a,b};
