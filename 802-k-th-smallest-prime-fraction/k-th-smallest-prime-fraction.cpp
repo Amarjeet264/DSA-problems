@@ -7,7 +7,7 @@ class Solution {
         int count=0;
         double maxf=0;
         while(j<arr.size()){
-            while((double)arr[i]/arr[j]<=mid){
+            while(i<j&&(double)arr[i]/arr[j]<=mid){
                 i++;
             }
             count+=i;
