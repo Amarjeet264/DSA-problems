@@ -1,8 +1,11 @@
 class Solution {
     bool rec(unordered_map<int,int>&mp,int idx,int jump,vector<int>&stones,vector<vector<long long>>&dp){
         int pos=stones[idx]+jump;
-        if(pos==stones.back()){
+        if(stones[idx]+jump==stones[stones.size()-1]){
             return true;
+        }
+        if(stones[idx]+jump>stones[stones.size()-1]){
+            return false;
         }
         if(mp.find(pos)==mp.end()){
             return false;
