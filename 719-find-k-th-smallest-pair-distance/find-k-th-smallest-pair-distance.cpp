@@ -3,12 +3,13 @@ class Solution {
         int count=0;
         int i=0;
         int j=1;
-        while(j<nums.size()){
-            while(nums[j]-nums[i]>diff){
-                i++;
+        while(i<nums.size()){
+            while(j<nums.size()&&nums[j]-nums[i]<=diff){
+                j++;
             }
+            j--;
             count+=j-i;
-            j++;
+            i++;
         }
         return count;
     }
@@ -18,13 +19,12 @@ public:
         sort(nums.begin(),nums.end());
         int low=0;
         int high=nums[n-1]-nums[0];
-        int ans=-1;
+        int ans=0;
         while(low<high){
             int mid=low+(high-low)/2;
             int x=rank(nums,mid);
             if(x<k){
                 low=mid+1;
-                ans=low;
             }
             else{
                 high=mid;
