@@ -19,17 +19,18 @@ public:
         sort(nums.begin(),nums.end());
         int low=0;
         int high=nums[n-1]-nums[0];
-        int ans=0;
-        while(low<high){
+        int ans = 0;
+        while(low<=high){
             int mid=low+(high-low)/2;
             int x=rank(nums,mid);
             if(x<k){
                 low=mid+1;
             }
             else{
-                high=mid;
+                ans=mid;
+                high=mid-1;
             }
         }
-        return low;
+        return ans;
     }
 };
