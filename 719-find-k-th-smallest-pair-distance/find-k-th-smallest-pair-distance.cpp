@@ -18,7 +18,7 @@ public:
         int n=nums.size();
         sort(nums.begin(),nums.end());
         int low=0;
-        int high=nums[n-1]-nums[0];
+        int high=1e8;
         int ans = 0;
         while(low<=high){
             int mid=low+(high-low)/2;
