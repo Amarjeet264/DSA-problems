@@ -5,10 +5,13 @@ public:
         int prev=nums[n-1];
         long long int ans=0;
         for(int i=n-2;i>=0;i--){
-            if(nums[i]>prev){
-                long long int tot=(nums[i]-1)/prev;
-                prev=nums[i]/(tot+1);
-                ans+=tot;
+            if(prev<nums[i]){
+                long long tot=nums[i]/prev;
+                if(nums[i]%prev!=0){
+                    tot++;
+                    prev=nums[i]/tot;
+                }
+                ans+=tot-1;
             }
             else{
                 prev=nums[i];
