@@ -8,6 +8,6 @@ public:
                 dp[j]=min(dp[j],1+dp[max(0,i-ranges[i])]);
             }
         }
-        return dp[n]>=1e8? -1:dp[n];
+        return dp[n]>=1e8?-1:dp[n];
     }
 };
