@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minTaps(int n, vector<int>& ranges) {
-        vector<int>dp(n+2,1e8);
+        vector<int>dp(n+1,1e8);
         dp[0]=0;
         for(int i=0;i<=n;i++){
             for(int j=max(i-ranges[i],0);j<=min(i+ranges[i],n);j++){
