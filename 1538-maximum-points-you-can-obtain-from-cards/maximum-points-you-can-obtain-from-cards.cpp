@@ -22,10 +22,21 @@ public:
            c--;
        }
        int maxi=amount;
-       for(int i=k-1;i>=0;i--){
-           amount-=cards[i];
-           amount+=cards[cards.size()-k+i];
-           maxi=max(maxi,amount);
+    //    for(int i=k-1;i>=0;i--){
+    //        amount-=cards[i];
+    //        amount+=cards[cards.size()-k+i];
+    //        maxi=max(maxi,amount);
+    //    }
+    //    return maxi;
+       int j=cards.size()-1;
+       i=k-1;
+       while(i>=0&&j>i){
+            amount=amount-cards[i]+cards[j];
+            if(maxi<amount){
+                maxi=max(maxi,amount);
+            }
+            j--;
+            i--;
        }
        return maxi;
     }
