@@ -7,17 +7,14 @@ public:
             for(int j = 0; j < mat[i].size(); ++j) {
                 for(auto n : row) {
                     nr.push_back(mat[i][j] + n);
-                    // cout<<mat[i][j]+n<<" ";
                 }
             }
-            // cout<<endl;
             sort(nr.begin(), nr.end());
-            row.resize(min(k, int(nr.size())));
-            for(int x = 0; x <min(k, int(nr.size())) ;++x) {
-                row[x] = nr[x];
-                // cout<<row[x]<<" ";
+            int sz=nr.size();
+            row.clear();
+            for(int x = 0; x <min(k,sz) ;++x) {
+                row.push_back(nr[x]);
             }
-            // cout<<endl;
         }
         return row[k-1];
     }
