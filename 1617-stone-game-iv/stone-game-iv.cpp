@@ -1,47 +1,24 @@
 class Solution {
-    bool winnerSquareGameHelper(int n, char* arr) {
-        if(n==0){ // Alice can not pick any coins, so he genuinely lost
-            arr[0]='F';
+    bool canwin(int n,vector<int>&dp){
+        if(n<=0){
             return false;
         }
-        if(n==1){
-            arr[1]='T';
-            return true;
-        }
-        
-        if(arr[n]!='N'){
-            if(arr[n]=='T'){
-                return true;
-            }
-            return false;
-        }
-        
-        // check if n is a perfect number or not
+        int sc=0;
         long double x= sqrt(n);
-
-	    if((int)x * (int)x == n){ // then it is a perfect square number
-            arr[n]='T';
-		    return true; // Alice picks it up
+        if(dp[n]!=-1)return dp[n];
+	    if((int)x * (int)x == n){
+		    return true;
 	    }
-        
-        for(int i=1; i*i<=n; i++){
-            bool prevAns= winnerSquareGameHelper(n-(i*i), arr);
-            if(prevAns==false){
-                arr[n]='T';
-                return true;
-            }
+        for(int i=1;i*i<=n;i++){
+            sc=i*i;
+            if(canwin(n-sc,dp)==0)return dp[n]= true;
+
         }
-        arr[n]='F';
-        return false;
+        return dp[n]=false;
     }
-    public:
-    bool winnerSquareGame(int n){
-        
-        char* arr= new char[n+1];
-        for(int i=0; i<=n; i++){
-            arr[i]='N'; // initialize with some some random char
-        }
-        
-        return winnerSquareGameHelper(n, arr);
+public:
+    bool winnerSquareGame(int n) {
+        vector<int>dp(n+n,-1);
+        return canwin(n,dp);
     }
 };
