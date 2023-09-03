@@ -9,14 +9,10 @@ class Solution {
             if(i!=0)left-=st[i-1];
             int right=0;
             right=st[j]-st[k];
-            if(left>right){
+            if(left>=right){
                 maxi=max(maxi,right+stone(k+1,j,st,dp));
             }
-            else if(left<right){
-                maxi=max(maxi,left+stone(i,k,st,dp));
-            }
-            else{
-                maxi=max(maxi,right+stone(k+1,j,st,dp));
+            if(left<=right){
                 maxi=max(maxi,left+stone(i,k,st,dp));
             }
         }
