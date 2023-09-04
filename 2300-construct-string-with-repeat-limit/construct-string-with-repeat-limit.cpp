@@ -1,38 +1,39 @@
 class Solution {
 public:
     string repeatLimitedString(string s, int limit) {
-        map<char, int> mpp;
-        for (auto x: s)
-        {
-            mpp[x]++;
+        priority_queue<pair<char,int>>pq;
+        vector<int>vis(26,0);
+        for(int i=0;i<s.length();i++){
+            vis[s[i]-'a']++;
         }
-        priority_queue<pair<char, int>> pq;
-        for (auto x: mpp)
-        {
-            pq.push({ x.first,x.second });
+        for(int i=0;i<s.length();i++){
+            if(vis[s[i]-'a']>0)
+            pq.push({s[i],vis[s[i]-'a']});
+            vis[s[i]-'a']=0;
         }
         string ans="";
         while(!pq.empty()){
-            auto x = pq.top();
-            int k = limit;
-            int freq = x.second;
-            char t = x.first;
+            char t=pq.top().first;
+            int x=pq.top().second;
             pq.pop();
-            int mi = min(k, freq);
-            freq -= mi;
-            ans += string(mi, t);
+            int freq=min(limit,x);
+            x-=freq;
 
-            if(pq.empty()||freq==0)continue;
-            char t1=pq.top().first;
-            int freq2=pq.top().second;
-            pq.pop();
-            ans+=t1;
-            freq2-=1;
-            if(freq>0){
-                pq.push({t,freq});
+            while(freq>0){
+                ans+=t;
+                freq--;
             }
-            if(freq2>0){
-                pq.push({t1,freq2});
+            if(pq.empty()||x==0)continue;
+            char t1=pq.top().first;
+            int x1=pq.top().second;
+            pq.pop();
+                ans+=t1;
+                x1-=1;
+            if(x>0){
+                pq.push({t,x});
+            }
+            if(x1>0){
+                pq.push({t1,x1});
             }
         }
         return ans;
