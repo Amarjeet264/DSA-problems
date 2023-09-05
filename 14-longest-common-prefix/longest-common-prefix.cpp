@@ -54,7 +54,6 @@ class Trie{
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& a) {
-        // sort(a.begin(), a.end(), [](string x, string y){return x.length() < y.length();});
         Trie obj;
         int maxi=0;
         string ans=a[0];
