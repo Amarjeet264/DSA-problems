@@ -5,28 +5,15 @@ public:
         for(auto it:s){
             mp[it]++;
         }
-        priority_queue<int>pq;
-        for(auto it:mp){
-            pq.push(it.second);
-        }
+        unordered_set<int>st;
         int cnt=0;
-        while(!pq.empty()){
-            int first=pq.top();
-            pq.pop();
-            if(pq.empty())break;
-            int second=pq.top();
-            pq.pop();
-
-            if(first==second){
-                first=first-1;
-                if(first>0)pq.push(first);
-                pq.push(second);
+        for(auto it:mp){
+            int freq=it.second;
+            while(freq>0&&st.find(freq)!=st.end()){
+                freq--;
                 cnt++;
             }
-            
-            else{
-                pq.push(second);
-            }
+            st.insert(freq);
         }
         return cnt;
     }
