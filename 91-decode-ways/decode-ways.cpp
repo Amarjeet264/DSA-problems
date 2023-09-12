@@ -21,13 +21,40 @@ class Solution {
     }
 public:
     int numDecodings(string s) {
-        int a = 1, b = s[0] != '0';
-        for(int i = 1; i < s.size(); ++i) {
-            int c = s[i] != '0' ? b : 0;
-            if(s[i - 1] == '1' || (s[i - 1] == '2' && s[i] - '1' + 1 < 7))
-                c += a;
-            a = b; b = c;
+        int n=s.length();
+        vector<int>dp(n,0);
+        if(s[0]=='0')return 0;
+        dp[0]=1;
+        for(int i=1;i<n;i++){
+            if(s[i]=='0'&&s[i-1]=='0'){
+                dp[i]=0;
+            }
+            else if(s[i-1]=='0'&&s[i]!='0'){
+                if(i>1)dp[i]=dp[i-1];
+            }
+            else if(s[i-1]!='0'&&s[i]=='0'){
+                    if(s[i-1]=='1'||s[i-1]=='2'){
+                        if(i>=2){
+                            dp[i]=dp[i-2];
+                        }
+                        else{
+                            dp[i]=1;
+                        }
+                    }
+            }
+            else{
+                string x="";
+                x+=s[i-1];
+                x+=s[i];
+                if(stoi(x)<=26){
+                    if(i-2>=0)dp[i]=dp[i-1]+dp[i-2];
+                    else dp[i]=dp[i-1]+1;
+                }
+                else{
+                    dp[i]=dp[i-1];
+                }
+            }
         }
-        return b;
+        return dp[n-1];
     }
 };
