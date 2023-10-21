@@ -7,7 +7,7 @@ struct Node{
     void put(char ch,Node* node){
         links[ch-'a']=node;
     }
-    Node* get(char ch){
+    Node* getele(char ch){
         return links[ch-'a'];
     }
     void setend(){
@@ -18,7 +18,7 @@ struct Node{
     }
 };
 class Trie {
-    private:Node* root;
+    Node* root;
 public:
     Trie() {
         root=new Node();
@@ -26,33 +26,33 @@ public:
     
     void insert(string word) {
         Node* curr=root;
-        for(int i=0;i<word.length();i++){
+        for(int i=0;i<word.size();i++){
             if(!curr->containskey(word[i])){
                 curr->put(word[i],new Node());
             }
-            curr=curr->get(word[i]);
+            curr=curr->getele(word[i]);
         }
         curr->setend();
     }
     
     bool search(string word) {
         Node* curr=root;
-        for(int i=0;i<word.length();i++){
+        for(int i=0;i<word.size();i++){
             if(!curr->containskey(word[i])){
                 return false;
             }
-            curr=curr->get(word[i]);
+            curr=curr->getele(word[i]);
         }
         return curr->isend();
     }
     
-    bool startsWith(string word) {
+    bool startsWith(string prefix) {
         Node* curr=root;
-        for(int i=0;i<word.length();i++){
-            if(!curr->containskey(word[i])){
+        for(int i=0;i<prefix.size();i++){
+            if(!curr->containskey(prefix[i])){
                 return false;
             }
-            curr=curr->get(word[i]);
+            curr=curr->getele(prefix[i]);
         }
         return true;
     }
