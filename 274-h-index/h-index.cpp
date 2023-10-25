@@ -1,23 +1,21 @@
 class Solution {
 public:
-    int hIndex(vector<int>& citations) {
-        int n=citations.size();
-        vector<int>issejyadakitne(n+1,0);
-        for(int i=0;i<citations.size();i++){
-            if(citations[i]>n){
-                issejyadakitne[n]+=1;
+    int hIndex(vector<int>& cit) {
+       sort(cit.begin(),cit.end());
+       int low=0;
+        int high=cit.size()-1;
+        int maxi=0;
+        int ans=0;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(cit[mid]>=cit.size()-mid){
+                ans=cit.size()-mid;
+                high=mid-1;
             }
             else{
-                issejyadakitne[citations[i]]++;
+                low=mid+1;
             }
         }
-        int sum=0;
-        for(int i=n;i>=0;i--){
-            sum+=issejyadakitne[i];
-            if(sum>=i){
-                return i;
-            }
-        }
-        return -1;
+        return ans;
     }
 };
