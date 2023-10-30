@@ -11,15 +11,14 @@
  */
 class Solution {
     unordered_map<int,int>mp;
-    TreeNode* build(vector<int>&pre,vector<int>&in,int preindex,int preend,int instart,int inend){
-        if(preindex>preend||instart>inend){
+    TreeNode* build(vector<int>&pre,vector<int>&in,int &preindex,int instart,int inend){
+        if(preindex>pre.size()-1||instart>inend){
             return nullptr;
         }
-        TreeNode* root=new TreeNode(pre[preindex]);
+        TreeNode* root=new TreeNode(pre[preindex++]);
         int inroot=mp[root->val];
-        int nums=inroot-instart;
-        root->left=build(pre,in,preindex+1,preend+nums,instart,inroot-1);
-        root->right=build(pre,in,preindex+nums+1,preend,inroot+1,inend);
+        root->left=build(pre,in,preindex,instart,inroot-1);
+        root->right=build(pre,in,preindex,inroot+1,inend);
         return root;
     }
 public:
@@ -27,6 +26,7 @@ public:
         for(int i=0;i<in.size();i++){
             mp[in[i]]=i;
         }
-        return build(pre,in,0,pre.size()-1,0,in.size()-1);
+        int preindex=0;
+        return build(pre,in,preindex,0,in.size()-1);
     }
 };
