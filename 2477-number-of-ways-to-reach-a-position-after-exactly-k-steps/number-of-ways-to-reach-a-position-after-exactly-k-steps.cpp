@@ -20,7 +20,7 @@ class Solution {
     }
 public:
     int numberOfWays(int startPos, int endPos, int k) {
-        vector<vector<int>>dp(3100,vector<int>(1001,-1));
+        vector<vector<int>>dp(10000,vector<int>(1001,-1));
         return ways(startPos,endPos,k,dp)%mod;
     }
 };
