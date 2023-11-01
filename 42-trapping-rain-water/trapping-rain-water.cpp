@@ -21,7 +21,6 @@ public:
         int x=0;
         for(int i=1;i<=n-2;i++){
             if(leftmax[i]!=-1&&rightmax[i]!=-1){
-                cout<<i<<" "<<leftmax[i]<<" "<<rightmax[i]<<endl;
                 x+=min(leftmax[i],rightmax[i])-height[i];
             }
         }
