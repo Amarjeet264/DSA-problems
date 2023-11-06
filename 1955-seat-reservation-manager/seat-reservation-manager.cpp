@@ -12,12 +12,12 @@ public:
         if(pq.empty())return -1;
         int x=pq.top();
         pq.pop();
-        mp[x]++;
+        // mp[x]++;
         return x;
     }
     
     void unreserve(int seat) {
-        mp.erase(seat);
+        // mp.erase(seat);
         pq.push(seat);
     }
 };
