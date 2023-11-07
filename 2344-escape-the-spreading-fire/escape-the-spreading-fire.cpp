@@ -83,9 +83,6 @@ public:
                     aag[i][j]=0;
                     q.push({0,{i,j}});
                 }
-                else if(grid[i][j]==2){
-                    aag[i][j]=-1;
-                }
             }
         }
 
