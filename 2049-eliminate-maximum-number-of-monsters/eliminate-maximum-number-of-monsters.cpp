@@ -6,12 +6,16 @@ public:
             double x=(double)dist[i]/speed[i];
             vec.push_back({x,{dist[i],speed[i]}});
         }
-        sort(vec.begin(),vec.end());
         if(vec[0].first==0)return 0;
-        int  time=1;
-        int cnt=1;
-        for(int i=1;i<vec.size();i++){
-            if(vec[i].first>time){
+        priority_queue<double,vector<double>,greater<double>>pq;
+        for(auto it:vec){
+            pq.push(it.first);
+        }
+        int  time=0;
+        int cnt=0;
+        while(!pq.empty()){
+            if(pq.top()>time){
+                pq.pop();
                 cnt++;
             }
             else{
