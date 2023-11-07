@@ -8,7 +8,7 @@ public:
         }
         sort(vec.begin(),vec.end());
         if(vec[0].first==0)return 0;
-        double time=1;
+        int  time=1;
         int cnt=1;
         for(int i=1;i<vec.size();i++){
             if(vec[i].first>time){
