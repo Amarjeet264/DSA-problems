@@ -22,7 +22,7 @@ public:
                 if(nrow==aag.size()-1&&ncol==aag[0].size()-1&&mere[nrow][ncol]>=0){
                   return 1;
                 } 
-                if(nrow>=0&&ncol>=0&&nrow<aag.size()&&ncol<aag[0].size()&&vis[nrow][ncol]==0&&mere[nrow][ncol]>0){
+                if(nrow>=0&&ncol>=0&&nrow<aag.size()&&ncol<aag[0].size()&&vis[nrow][ncol]==0&&mere[nrow][ncol]>0&&mere[nrow][ncol]!=-INT_MAX){
                     vis[nrow][ncol]=1;
                     q.push({nrow,ncol});
                 }
