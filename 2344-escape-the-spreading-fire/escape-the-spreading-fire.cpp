@@ -107,15 +107,24 @@ public:
     }
 
     int maximumMinutes(vector<vector<int>>& a) {
-        // if(!poss(0,a))return -1;
-        int n=a.size(),m=a[0].size();
-        int l=-1,r=n*m+100,ans=-1;
-        while(r-l>1){
-            int m=l+(r-l)/2;
-            if(poss(m,a)) ans=m,l=m;
-            else r=m;
+        int n=a.size();
+        int m=a[0].size();
+        int low=0;
+        int high=m*n;
+        int ans=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(poss(mid,a)){
+                ans=mid;
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
         }
-        if(ans>=n*m) return 1000000000;
+        if(ans==m*n){
+            return 1e9;
+        }
         return ans;
     }
 };
