@@ -18,8 +18,7 @@
 struct Node{
     Node* links[26];
     vector<string>all;
-    bool flag=false;
-    // public:
+    public:
     bool containskey(char ch){
         return links[ch-'a']!=NULL;
     }
@@ -28,9 +27,6 @@ struct Node{
     }
     Node* get(char ch){
         return links[ch-'a'];
-    }
-    void setend(){
-        flag=true;
     }
 };
 
@@ -45,7 +41,6 @@ public:
             curr=curr->get(s[i]);
             st.push(curr);
         }
-        curr->setend();
     }
     vector<vector<string>> suggestedProducts(vector<string>& products, string search) {
         vector<vector<string>>ans(search.size());
@@ -62,7 +57,6 @@ public:
                 }
             }
         }
-        // curr=new Node();
         for(int i=0;i<search.size();i++){
             if(!curr->containskey(search[i])){
                 return ans;
