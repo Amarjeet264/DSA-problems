@@ -14,7 +14,6 @@ public:
         for(auto it:in){
             if(it.second==1){
                 node=it.first;
-                cout<<it.first<<" ";
                 break;
             }
         }
@@ -27,13 +26,9 @@ public:
             q.pop();
             ans.push_back(fr);
             for(auto it:mp[fr]){
-                // in[it]=in[it]-1;
-                // if(in[it]==1){
-                    if(!vis[it])
-                    q.push(it);
-                // }
+                if(!vis[it])
+                q.push(it);
             }
-            in.erase(fr);
         }
         return ans;
     }
