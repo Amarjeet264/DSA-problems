@@ -29,28 +29,15 @@ public:
                 }
             }
             else{
-                if(h==nullptr){
-                    ListNode* naya=new ListNode(curr->val);
-                    naya->next=nullptr;
-                    h->next=naya;
-                    h=h->next;
-                }
-                else{
-                    ListNode* naya=new ListNode(curr->val);
-                    naya->next=nullptr;
-                    h->next=naya;
-                    h=h->next;
-                }
+                ListNode* naya=new ListNode(curr->val);
+                naya->next=nullptr;
+                h->next=naya;
+                h=h->next;
             }
             curr=curr->next;
         }
         if(f==false){
-            if(h == NULL) {
-                h->next = curr;
-            }
-            else{
-                h -> next = curr;
-            }
+           h -> next = curr;
         }
         return dummy->next;
     }
