@@ -31,14 +31,6 @@ class Solution {
             st.push(i);
         }
         reverse(rightmin.begin(),rightmin.end());
-        for(int i=0;i<n;i++){
-            cout<<leftmin[i]<<" ";
-        }
-        cout<<endl;
-        for(int i=0;i<n;i++){
-            cout<<rightmin[i]<<" ";
-        }
-        cout<<endl;
         int ans=0;
         for(int i=0;i<n;i++){
             if(leftmin[i]==-1&&rightmin[i]==-1){
