@@ -20,35 +20,41 @@ public:
 */
 
 class Solution {
-    void dfs(Node* copy,Node* curr,map<int,Node*>&mp){
-        mp[curr->val]=copy;
-        for(auto nayacurr:curr->neighbors){
-            if(mp[nayacurr->val]==NULL){
-                Node* naya=new Node(nayacurr->val);
-                (copy->neighbors).push_back(naya);
-                dfs(naya,nayacurr,mp);
+    void clone(Node* root1,unordered_map<int,Node*>&mp,Node* curr){
+        // Node* root1=new Node(curr->val);
+        for(int i=0;i<curr->neighbors.size();i++){
+            Node* curr1=curr->neighbors[i];
+            if(mp[curr1->val]==nullptr){
+                Node* nayacurr1=new Node(curr1->val);
+                mp[curr1->val]=nayacurr1;
+                root1->neighbors.push_back(nayacurr1);
+                clone(nayacurr1,mp,curr1);
             }
             else{
-                (copy->neighbors).push_back(mp[nayacurr->val]);
-            }
+                 root1->neighbors.push_back(mp[curr1->val]);
+            } 
         }
     }
 public:
     Node* cloneGraph(Node* node) {
-       if(!node)return nullptr;
-       map<int,Node*>mp;
-       Node* copy= new Node(node->val);
-       mp[node->val]=copy;
-       for(auto curr:node->neighbors){
-           if(mp[curr->val]==NULL){
-               Node* nayicopy=new Node(curr->val);
-               (copy->neighbors).push_back(nayicopy);
-               dfs(nayicopy,curr,mp);
-           }
-           else{
-               (copy->neighbors).push_back(mp[curr->val]);
-           }
-       }
-       return copy;
+        if(!node){
+            return nullptr;
+        }
+        Node* root=new Node(node->val);
+        unordered_map<int,Node*>mp;
+        mp[root->val]=root;
+        for(int i=0;i<node->neighbors.size();i++){
+            Node* curr=node->neighbors[i];
+            if(mp[curr->val]==0){
+                Node* nayacurr=new Node(curr->val);
+                mp[curr->val]=nayacurr;
+                root->neighbors.push_back(nayacurr);
+                clone(nayacurr,mp,curr);
+            }
+            else{
+                root->neighbors.push_back(mp[curr->val]);
+            }
+        }
+        return root;
     }
 };
