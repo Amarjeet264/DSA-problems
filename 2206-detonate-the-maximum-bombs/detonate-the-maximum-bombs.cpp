@@ -23,13 +23,13 @@ public:
                 }
             }
         }
-        for(int i=0;i<n;i++){
-            cout<<i<<"->"<<" ";
-            for(auto it:adj[i]){
-                cout<<it<<" ";
-            }
-            cout<<endl;
-        }
+        // for(int i=0;i<n;i++){
+        //     cout<<i<<"->"<<" ";
+        //     for(auto it:adj[i]){
+        //         cout<<it<<" ";
+        //     }
+        //     cout<<endl;
+        // }
         int maxi=0;
         for(int i=0;i<n;i++){
             // if(!vis[i]){
