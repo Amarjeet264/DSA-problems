@@ -1,52 +1,31 @@
-class Disjointset{
-    public:
-    vector<int>size,parent;
-    Disjointset(int n){
-        parent.resize(n+1,0);
-        size.resize(n+1);
-        for(int i=0;i<=n;i++){
-            parent[i]=i;
-        }
-    }
-    int findulpar(int node){
-        if(parent[node]==node){
-            return node;
-        }
-        return parent[node]=findulpar(parent[node]);
-    }
-    void unionbyr(int u,int v){
-        int ulpu=findulpar(u);
-        int ulpv=findulpar(v);
-        if(ulpu==ulpv){
-            return;
-        }
-        if(size[ulpu]<size[ulpv]){
-            parent[ulpu]=ulpv;
-            size[ulpv]+=size[ulpu];
-        }
-        else{
-            parent[ulpv]=ulpu;
-            size[ulpu]+=size[ulpv];
-        }
-    }
-};
 class Solution {
+private:
+    void dfs(vector<vector<int>>& adj, vector<bool> &vis, int curr, long long &count){
+        if(vis[curr]) return ;
+        vis[curr]=true;
+        count++;
+        for(auto neighbor: adj[curr]){
+            dfs(adj,vis,neighbor,count);
+        }
+    }
 public:
     long long countPairs(int n, vector<vector<int>>& edges) {
-        Disjointset ds(n);
-        for(auto it:edges){
-            ds.unionbyr(it[0],it[1]);
+        vector<vector<int>> adj(n);
+        for(int i=0;i<edges.size();i++){
+            adj[edges[i][0]].push_back(edges[i][1]);
+            adj[edges[i][1]].push_back(edges[i][0]);
         }
-        unordered_map<int,int>mp;
+        vector<bool> vis(n,false);
+        vector<long long> islands;
+        long long res=0, visCount=n;
         for(int i=0;i<n;i++){
-            int ulp=ds.findulpar(i);
-            mp[ulp]++;
+            if(!vis[i]){
+                long long count=0;
+                dfs(adj,vis,i,count);
+                res += count*(visCount-count);
+                // visCount-=count;
+            }
         }
-        long long ans=0;
-        for(auto it:mp){
-            int cnt=it.second;
-            ans+=(long)(cnt)*(n-cnt);
-        }
-        return ans/2;
+        return res/2;
     }
 };
