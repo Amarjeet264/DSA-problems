@@ -18,11 +18,8 @@ class Solution {
 public:
     vector<bool> checkIfPrerequisite(int num, vector<vector<int>>& pre, vector<vector<int>>& que) {
         vector<int>adj[num];
-        vector<int>in(num);
         for(int i=0;i<pre.size();i++){
             adj[pre[i][0]].push_back(pre[i][1]);
-            // cout<<pre[i][1]<<" ";
-            in[pre[i][1]]++;
         }
         vector<bool>ans;
         for(int i=0;i<que.size();i++){
