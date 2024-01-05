@@ -1,32 +1,51 @@
 class Solution {
+    
 public:
     string longestPalindrome(string s) {
-        if(s.length()==0)return "";
-        int j=0;
-        int maxi=1;
-        int start=0;
-        while(j<s.length()){
-            int left=j-1;
-            int right=j+1;
-            while(left>=0&&right<s.length()&&s[left]==s[right]){
-                if(maxi<right-left+1){
-                    maxi=max(maxi,right-left+1);
-                    start=left;
+        int maxi=0;
+        string ans="";
+        int start=-1;
+        for(int i=0;i<s.length();i++){
+            int left=i-1;
+            int right=i+1;
+            while(left>=0&&right<s.length()){
+                if(s[left]==s[right]){
+                    if(maxi<right-left+1){
+                        maxi=right-left+1;
+                        start=left;
+                    }
+                    left--;
+                    right++;
+                    // cout<<left<<" "<<right<<endl;
                 }
-                left--;
-                right++;
-            }
-            left=j;
-            right=j+1;
-            while(left>=0&&right<s.length()&&s[left]==s[right]){
-                if(maxi<right-left+1){
-                    maxi=max(maxi,right-left+1);
-                    start=left;
+                else{
+                    break;
                 }
-                left--;
-                right++;
             }
-            j++;
+            left=i;
+            right=i+1;
+             while(left>=0&&right<s.length()){
+                if(s[left]==s[right]){
+                    if(maxi<right-left+1){
+                        maxi=right-left+1;
+                        start=left;
+                    }
+                    left--;
+                    right++;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        // cout<<start<<" "<<maxi<<" ";
+        if(start==-1){
+            if(s.length()!=0){
+                return ans+s[0];
+            }
+            else{
+                return "";
+            }
         }
         return s.substr(start,maxi);
     }
