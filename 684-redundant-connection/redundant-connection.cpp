@@ -20,7 +20,7 @@ public:
                 ans.push_back(edges[i][1]);
             }
             else{
-                parent[ulpv]=ulpu;
+                parent[ulpu]=ulpv;
             }
         }
         return ans;
