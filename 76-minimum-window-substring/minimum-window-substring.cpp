@@ -1,38 +1,41 @@
 class Solution {
 public:
-    string minWindow(string s, string t) {
-        unordered_map<char,int>mp;
-        for(int i=0;i<t.length();i++){
-            mp[t[i]]++;
+    string minWindow(string a, string b) {
+        if(b.length()>a.length()){
+            return "";
         }
+        unordered_map<char,int>mp;
+        for(int i=0;i<b.size();i++){
+            mp[b[i]]++;
+        }
+        int i=0;
         int j=0;
         int start=-1;
         int minlen=INT_MAX;
-        int i=0;
-        int cnt=0;
-        while(j<s.length()){
-            if(mp.find(s[j])!=mp.end()){
-                mp[s[j]]--;
-                if(mp[s[j]]==0){
-                    cnt++;
-                }
+        int cnt=mp.size();
+        while(j<a.size()){
+            mp[a[j]]--;
+            if(mp[a[j]]==0){
+                cnt--;
             }
-            if(mp.size()==cnt){
-                while(i<=j&&mp.size()==cnt){
-                    if(minlen>j-i+1){
-                        minlen=j-i+1;
-                        start=i;
-                    }
-                    if(mp.find(s[i])!=mp.end()){
-                        mp[s[i]]++;
-                        if(mp[s[i]]>0)cnt--;
+            if(cnt==0){
+                while(i<=j&&mp[a[i]]<0&&cnt==0){
+                    mp[a[i]]++;
+                    if(mp[a[i]]==1){
+                        cnt++;
                     }
                     i++;
+                }
+                if(minlen>j-i+1){
+                    minlen=j-i+1;
+                    start=i;
                 }
             }
             j++;
         }
-        if(minlen==INT_MAX)return "";
-        return s.substr(start,minlen);
+        if(start==-1){
+            return "";
+        }
+        return a.substr(start,minlen);
     }
 };
