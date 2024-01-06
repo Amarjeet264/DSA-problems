@@ -1,26 +1,28 @@
 class Solution {
-    int dfs(int i, int n, vector<int> &nums, unordered_map<int, int> &m, vector<int> &dp) {
-        if(i == n) return 0;
-        if(dp[i] != -1) return dp[i];
-
-        int notpick = 0 + dfs(i + 1, n, nums, m, dp);
-        int pick = m[nums[i]] * nums[i];
-        if(i + 1 < n && nums[i] + 1 == nums[i + 1]) pick += dfs(i + 2, n, nums, m, dp);
-        else if(i + 1 < n && nums[i] + 1 != nums[i + 1]) pick += dfs(i + 1, n, nums, m, dp);
-        
-        return dp[i] = max(pick, notpick);
+    int find(int i,vector<int>&arr,unordered_map<int,int>&mp,int prev,vector<vector<int>>&dp){
+        if(i>=arr.size()){
+            return 0;
+        }
+        if(dp[i][prev]!=-1){
+            return dp[i][prev];
+        }
+        int nottake=find(i+1,arr,mp,prev,dp);
+        int take=0;
+        if(prev==arr.size()||abs(arr[i]-arr[prev])!=1)take=arr[i]*mp[arr[i]]+find(i+1,arr,mp,i,dp);
+        return dp[i][prev]= max(take,nottake);
     }
 public:
     int deleteAndEarn(vector<int>& nums) {
-        unordered_map<int, int> m;
-        for(int i : nums) m[i]++;
-
-        vector<int> v;
-        for(auto i : m) v.push_back(i.first);
-        sort(v.begin(), v.end());
-        int n = v.size();
-        vector<int> dp(n, -1);
-
-        return dfs(0, n, v, m, dp);
+        unordered_map<int,int>mp;
+        for(auto it:nums){
+            mp[it]++;
+        }
+        vector<int>arr;
+        for(auto it:mp){
+            arr.push_back(it.first);
+        }
+        sort(arr.begin(),arr.end());
+        vector<vector<int>>dp(arr.size(),vector<int>(arr.size()+1,-1));
+        return find(0,arr,mp,arr.size(),dp);
     }
 };
