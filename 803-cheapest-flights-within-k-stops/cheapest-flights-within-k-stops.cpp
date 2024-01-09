@@ -13,11 +13,10 @@ public:
             int d=pq.front().first;
             int stops=pq.front().second.first;
             int node=pq.front().second.second;
-            // if(node==destination){
-            //     pq.pop();
-            //     continue;
-            // }
             pq.pop();
+            if(node==destination){
+                continue;
+            }
             if(stops>k)continue;
             for(auto it:adj[node]){
                 int w=it.second;
