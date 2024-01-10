@@ -4,13 +4,11 @@ public:
         stack<int>st;
         for(int i=0;i<ast.size();i++){
             if(st.empty()){
-                cout<<i<<"fi"<<endl;
                 st.push(ast[i]);
             }
             else{
                 if(ast[i]<0&&st.top()>0){
                     while(!st.empty()&&st.top()<abs(ast[i])&&st.top()>0){
-                        cout<<"vvv"<<endl;
                         st.pop();
                     }
                     if(!st.empty()&&st.top()==abs(ast[i])){
@@ -30,7 +28,6 @@ public:
                     }
                 }
                 else{
-                    cout<<i<<"li"<<endl;
                     st.push(ast[i]);
                 }
             }
