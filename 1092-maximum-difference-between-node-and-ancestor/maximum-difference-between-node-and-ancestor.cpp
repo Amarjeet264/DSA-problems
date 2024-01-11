@@ -10,23 +10,30 @@
  * };
  */
 class Solution {
-    int maxiiii(TreeNode* root,int mini,int maxi){
+    int maxdiff=0;
+    pair<int,int>maxa(TreeNode* root){
         if(!root){
-            return 0;
+            return {1e7,-1e7};
         }
-        
-        mini=min(mini,root->val);
-        maxi=max(maxi,root->val);
-        cout<<mini<<" "<<maxi<<" ";
         if(!root->left&&!root->right){
-            return maxi-mini;
+            return {root->val,root->val};
         }
-        int lef=maxiiii(root->left,mini,maxi);
-        int righ=maxiiii(root->right,mini,maxi);
-        return max(lef,righ);
+        pair<int,int>left=maxa(root->left);
+        pair<int,int>right=maxa(root->right);
+        if(left.first!=1e7&&right.first!=1e7){
+            maxdiff=max(maxdiff,max(abs(root->val-left.first),max(abs(root->val-left.second),max(abs(root->val-right.first),abs(root->val-right.second)))));
+        }
+        else if(left.first==1e7){
+            maxdiff=max(maxdiff,max(abs(root->val-right.first),abs(root->val-right.second)));
+        }
+        else if(right.first==1e7){
+            maxdiff=max(maxdiff,max(abs(root->val-left.first),abs(root->val-left.second)));
+        }
+        return {min(root->val,min(left.first,right.first)),max(root->val,max(left.second,right.second))};
     }
 public:
     int maxAncestorDiff(TreeNode* root) {
-        return maxiiii(root,INT_MAX,INT_MIN);
+        maxa(root);
+        return maxdiff;
     }
 };
