@@ -7,7 +7,7 @@ public:
         int j=0;
         int cnt=0;
         while(i<g.size()&&j<s.size()){
-            if(g[i]<=s[j]){
+            if(s[j]>=g[i]){
                 cnt++;
                 i++;
                 j++;
