@@ -17,11 +17,11 @@ public:
             }
             mp1[word2[i]]++;
         }
-        for(int i=0;i<n;i++){
-            if(mp1.find(word1[i])==mp1.end()){
-                return false;
-            }
-        }
+        // for(int i=0;i<n;i++){
+        //     if(mp1.find(word1[i])==mp1.end()){
+        //         return false;
+        //     }
+        // }
         unordered_map<int,vector<char>>cnt;
         unordered_map<int,vector<char>>cnt1;
         for(auto it:mp){
