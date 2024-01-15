@@ -8,7 +8,7 @@ public:
         map<int,int>mp1;
         for(int i=0;i<matches.size();i++){
             mp[matches[i][1]]++;
-            mp1[matches[i][1]]++;
+            // mp1[matches[i][1]]++;
             mp1[matches[i][0]]++;
         }
         for(auto it:mp1){
