@@ -81,7 +81,6 @@ public:
         if(parsz>leftheight+rightheight||leftheight>parsz+rightheight||rightheight>leftheight+parsz){
             return 1;
         }
-        cout<<leftheight<<" "<<rightheight<<" "<<parsz<<" ";
         return 0;
     }
 };
