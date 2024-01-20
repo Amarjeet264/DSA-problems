@@ -62,7 +62,7 @@ public:
             }
             total=(total%mod+(long long)arr[i]*(x*y))%mod;
         }
-       return total%mod;
+       return total%mod;
 
     }
 };
