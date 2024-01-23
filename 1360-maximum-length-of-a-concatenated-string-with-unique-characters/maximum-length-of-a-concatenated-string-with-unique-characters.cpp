@@ -1,42 +1,37 @@
 class Solution {
-    bool poss(vector<int>&taken,string s){
-        vector<int>abhi(26,0);
-        for(int i=0;i<s.length();i++){
-            if(abhi[s[i]-'a']==1){
+    unordered_map<char,int>mp;
+    bool isposs(string s){
+        unordered_map<char,int>mp1;
+        for(int i=0;i<s.size();i++){
+            if(mp1.find(s[i])!=mp1.end()||mp.find(s[i])!=mp.end()){
                 return false;
             }
-            if(taken[s[i]-'a']==1){
-                return false;
-            }
-            abhi[s[i]-'a']=1;
+            mp1[s[i]]++;
         }
         return true;
     }
-    int leng(int i,vector<string>&arr,vector<int>taken,int len){
+    int maxi(int i,vector<string>&arr){
         if(i>=arr.size()){
-            return len;
+            return 0;
         }
-        string ab=arr[i];
-        if(poss(taken,ab)==false){
-            return leng(i+1,arr,taken,len);
-        }
-        else{
-            for(int j=0;j<ab.size();j++){
-                taken[ab[j]-'a']=1;
+        int nottake=maxi(i+1,arr);
+        int take=0;
+        if(isposs(arr[i])){
+            for(int j=0;j<arr[i].size();j++){
+                mp[arr[i][j]]++;
             }
-            len+=ab.size();
-            int lele=leng(i+1,arr,taken,len);
-            for(int j=0;j<ab.size();j++){
-                taken[ab[j]-'a']=0;
+            take=arr[i].size()+maxi(i+1,arr);
+             for(int j=0;j<arr[i].size();j++){
+                mp[arr[i][j]]--;
+                if(mp[arr[i][j]]==0){
+                    mp.erase(arr[i][j]);
+                }
             }
-            len-=ab.size();
-            int mtle=leng(i+1,arr,taken,len);
-            return max(lele,mtle);
         }
+        return max(take,nottake);
     }
 public:
     int maxLength(vector<string>& arr) {
-      vector<int>taken(26,0);
-      return leng(0,arr,taken,0);  
+        return maxi(0,arr);
     }
 };
