@@ -7,16 +7,15 @@ public:
                 st.pop();
                 k--;
             }
-            if(st.empty()&&num[i]=='0'){
-                continue;
-            }
+            // if(st.empty()&&num[i]=='0'){
+            //     continue;
+            // }
             st.push(num[i]);
         }
         while(k!=0&&!st.empty()){
             st.pop();
             k--;
         }
-        // while(!st.em)
         string ans="";
         while(!st.empty()){
             char ch=st.top();
