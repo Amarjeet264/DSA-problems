@@ -6,12 +6,12 @@ public:
         vector<int>dp(100,0);
         dp[0]=1;
         dp[1]=1;
-        for(int i=2;i<=45;i++){
+        for(int i=2;i<=43;i++){
             dp[i]=dp[i-1]+dp[i-2];
-            // cout<<dp[i]<<" ";
+            cout<<dp[i]<<" ";
         }
         int cnt=0;
-        for(int i=45;i>=0;i--){
+        for(int i=43;i>=0;i--){
             if(k>=dp[i]){
                 int x=k/dp[i];
                 k-=x*dp[i];
