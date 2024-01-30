@@ -1,26 +1,32 @@
 class Solution {
     int mod=1e9+7;
-    int ways(int start,int end,int steps,vector<vector<int>>&dp){
-        if(start>end&&start-end>steps)return 0;
-        if(steps==0){
-            if(start==end){
-                return 1;
-            }
+    int x;
+    int number(int end,int k,int curr,vector<vector<int>>&dp){
+        if(abs(curr-end)>k){
             return 0;
         }
-        if(steps<0)return 0;
-        if(dp[start+1000][steps]!=-1)return dp[start+1000][steps]%mod;
-        int left=0;
-        left=ways(start+1,end,steps-1,dp)%mod;
-
-        int right=0;
-        right=ways(start-1,end,steps-1,dp)%mod;
-        
-        return dp[start+1000][steps]=(left+right)%mod;
+        if(curr==end){
+            if(k==0){
+                return 1;
+            }
+        }
+        if(k<0)return 0;
+        if(k==0){
+            return 0;
+        }
+        int x=curr;
+        if(curr<0)x+=5000;
+        if(dp[x][k]!=-1){
+            return dp[x][k];
+        }
+        int ghata=number(end,k-1,curr-1,dp);
+        int badha=number(end,k-1,curr+1,dp);
+        return dp[x][k]= (badha+ghata)%mod;
     }
 public:
-    int numberOfWays(int startPos, int endPos, int k) {
-        vector<vector<int>>dp(10000,vector<int>(1001,-1));
-        return ways(startPos,endPos,k,dp)%mod;
+    int numberOfWays(int start, int end, int k) {
+        // int x=2*(end+k+1);
+        vector<vector<int>>dp(6000,vector<int>(k+1,-1));
+        return number(end,k,start,dp);
     }
 };
