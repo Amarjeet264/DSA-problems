@@ -42,28 +42,29 @@ public:
             // }
             if(currtime.size()<3)continue;
             else{
-                for(int k=0;k<currtime.size();k++){
-                    string s="";
-                    s+=currtime[k][0];
-                    s+=currtime[k][1];
-                    int starth=mystoi(s);
-                    s="";
-                    s+=currtime[k][2];
-                    s+=currtime[k][3];
-                    // cout<<s<<endl;
-                    int startmin=mystoi(s);
+                // for(int k=0;k<currtime.size();k++){
+                    
                     // cout<<startmin<<endl;
-                    int j=k+1;
+                    int j=2;
                     bool can=0;
                     int cnt=1;
                     while(j<currtime.size()){
+                        string s="";
+                        s+=currtime[j-2][0];
+                        s+=currtime[j-2][1];
+                        int starth=mystoi(s);
+                        s="";
+                        s+=currtime[j-2][2];
+                        s+=currtime[j-2][3];
+                        // cout<<s<<endl;
+                        int startmin=mystoi(s);
                         s="";
                         s+=currtime[j][0];
                         s+=currtime[j][1];
                         int x=mystoi(s);
                         // if(now=="aywtqh")cout<<starth<<" "<<startmin<<endl;
                         if(x-starth<1){
-                            cnt++;
+                            can=1;
                         }
                         else{
                             s="";
@@ -71,26 +72,21 @@ public:
                             s+=currtime[j][3];
                             int y=mystoi(s);
                             if(x-starth==1&&y-startmin<0){
-                                    if(startmin==19)cout<<"ha"<<now<<endl;
-                                    cnt++;
+                                    // if(startmin==19)cout<<"ha"<<now<<endl;
+                                    can=true;
                             }
                             else{
-                                cnt=1;
+                                // cnt=1;
+                                j++;
                                 starth=x;
                                 startmin=y;
                             }
                         }
-                        if(cnt==3){
-                            can=1;
+                        if(can){
+                            ans.push_back(now);
                             break;
                         }
-                        j++;
                     }
-                    if(can){
-                         ans.push_back(now);
-                         break;
-                    }
-                }
             }
         }
         return ans;
