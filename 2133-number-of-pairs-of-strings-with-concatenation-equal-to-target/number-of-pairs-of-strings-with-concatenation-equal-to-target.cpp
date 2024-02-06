@@ -16,7 +16,7 @@ public:
             else if(x!=""){
                 cnt+=mp[x];
             }
-            cout<<cnt<<endl;
+            // cout<<cnt<<endl;
         }
         return cnt;
     }
