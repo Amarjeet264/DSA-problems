@@ -13,7 +13,7 @@ public:
                 cout<<x<<" ";
                 x++;
             }
-            cout<<"first"<<endl;
+            // cout<<"first"<<endl;
             top++;
             for(int i=top;i<=bottom;i++){
                 cout<<x<<" ";
@@ -21,13 +21,13 @@ public:
                 x++;
             }
             right--;
-            cout<<"second"<<endl;
+            // cout<<"second"<<endl;
             for(int i=right;i>=left;i--){
                 vec[bottom][i]=x;
                 cout<<x<<" ";
                 x++;
             }
-            cout<<"third"<<endl;
+            // cout<<"third"<<endl;
             bottom--;
             for(int i=bottom;i>=top;i--){
                 cout<<x<<" ";
@@ -35,7 +35,7 @@ public:
                 x++;
             }
             left++;
-            cout<<"ffff"<<endl;
+            // cout<<"ffff"<<endl;
         }
         return vec;
     }
