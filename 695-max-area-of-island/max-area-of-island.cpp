@@ -47,31 +47,13 @@ public:
             for(int j=0;j<m;j++){
                 if(grid[i][j]==1){
                     int first=i*m+j;
-                    int second=-1;
-                    int mx=1;
                     for(int k=0;k<4;k++){
                         int row=i+dr[k];
                         int col=j+dc[k];
                         if(row>=0&&row<n&&col>=0&&col<m&&grid[row][col]==1){
                             ds.unionbysz(first,row*m+col);
-                        // if(i==2){
-                        //     cout<<row<<" "<<col<<endl;
-                        // }
-                        //     int pr=ds.findulpar(row*m+col);
-                        //     if(ds.size[pr]>=mx){
-                        //         mx=ds.size[pr];
-                        //         second=pr;
-                        //     }
                         }
                     }
-                    // cout<<second<<" ";
-                    // if(second!=-1){
-                    //     ds.unionbysz(first,second);
-                    //     maxi=max(maxi,ds.size[ds.findulpar(first)]);
-                    // }
-                    // else{
-                    //     maxi=max(maxi,1);
-                    // }
                 }
             }
         }
