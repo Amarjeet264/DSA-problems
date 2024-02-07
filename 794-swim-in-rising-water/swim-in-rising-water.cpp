@@ -16,7 +16,7 @@ public:
             for(int k=0;k<4;k++){
                 int nrow=row+dr[k];
                 int ncol=col+dc[k];
-                if(nrow>=0&&nrow<n&&ncol>=0&&ncol<m&&till[nrow][ncol]>max(grid[nrow][ncol],till[row][col])){
+                if(nrow>=0&&nrow<n&&ncol>=0&&ncol<m&&till[nrow][ncol]>till[row][col]){
                     till[nrow][ncol]=max(till[row][col],grid[nrow][ncol]);
                     q.push({nrow,ncol});
                 }
