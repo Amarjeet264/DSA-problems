@@ -1,20 +1,21 @@
 class Solution {
     unordered_set<string>st;
-    void letter(string s,int i){
+    void letter(string &s,int i){
         if(i>=s.length()){
             st.insert(s);
             return;
         }
-        // cout<<s<<" ";
         letter(s,i+1);
         if(!(s[i]-'0'>=0&&s[i]-'0'<=9)){
             if(s[i]>='a'&&s[i]<='z'){
                 s[i]=toupper(s[i]);
                 letter(s,i+1);
+                s[i]=tolower(s[i]);
             }
             else{
                 s[i]=tolower(s[i]);
                 letter(s,i+1);
+                s[i]=toupper(s[i]);
             }
         }
     }
