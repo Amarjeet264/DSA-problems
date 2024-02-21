@@ -21,7 +21,7 @@ public:
                     ans.push_back(carry+'0');
                 }
                 reverse(ans.begin(),ans.end());
-                cout<<ans<<endl; 
+                // cout<<ans<<endl; 
             }
             else{
                 string nayi="";
@@ -40,7 +40,7 @@ public:
                     nayi.push_back(carry+'0');
                 }
                 reverse(nayi.begin(),nayi.end());
-                cout<<nayi<<endl;
+                // cout<<nayi<<endl;
                 int x=cnt;
                 string final="";
                 int j=ans.size()-1;
@@ -48,7 +48,7 @@ public:
                     final.push_back(ans[j]);
                     j--;
                 }
-                cout<<final<<endl;
+                // cout<<final<<endl;
                 int k=nayi.size()-1;
                 string dusri="";
                 int car=0;
@@ -71,14 +71,14 @@ public:
                     dusri.push_back(car+'0');
                 }
                 reverse(dusri.begin(),dusri.end());
-                cout<<dusri<<endl;
+                // cout<<dusri<<endl;
                 ans=dusri;
                 reverse(final.begin(),final.end());
                 ans+=final;
-                cout<<ans<<" ";
+                // cout<<ans<<" ";
                 // for(int h=0;h<dusri.size())
             }
-            cout<<endl<<endl;
+            // cout<<endl<<endl;
             cnt++;
         }
         string f="";
