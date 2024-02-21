@@ -13,7 +13,7 @@ public:
                 pre=dup;
                 pre[s[i]-'a']=1;
             }
-            cout<<i<<" "<<cnt<<endl;
+            // cout<<i<<" "<<cnt<<endl;
         }
         // cnt++;
         return cnt;
