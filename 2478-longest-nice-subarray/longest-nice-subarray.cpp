@@ -9,7 +9,7 @@ public:
             while(i<=j&&(nums[j]&x)){
                 x=x^nums[i];
                 i++;
-                maxi=max(maxi,j-i+1);
+                // maxi=max(maxi,j-i+1);
             }
             x=x|nums[j];
             maxi=max(maxi,j-i+1);
