@@ -6,7 +6,7 @@ public:
             mp[s[i]]++;
         }
         for(auto &it:mp){
-            cout<<it.first<<" "<<it.second<<endl;
+            // cout<<it.first<<" "<<it.second<<endl;
             if(it.second%2){
                 k-=1;
                 mp[it.first]--;
