@@ -21,15 +21,11 @@ class Solution {
     }
     TreeNode* maketree(int i,int j){
         if(i>j){
-            // if(i==j){
-            //     TreeNode* root=new TreeNode(vec[i]);
-            //     return root;
-            // }
             return nullptr;
         }
         int mid=(i+j)/2;
         TreeNode* root=new TreeNode(vec[mid]);
-        cout<<i<<" "<<j<<" "<<mid<<" "<<root->val<<endl;
+        // cout<<i<<" "<<j<<" "<<mid<<" "<<root->val<<endl;
         root->left=maketree(i,mid-1);
         root->right=maketree(mid+1,j);
         return root;
