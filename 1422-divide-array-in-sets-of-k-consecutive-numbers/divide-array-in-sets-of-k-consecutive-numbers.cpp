@@ -15,7 +15,6 @@ public:
             int prev=-1;
             while(x>0){
                 int ele=-pq.top();
-                // cout<<ele<<" ";
                 pq.pop();
                 if(prev==-1)prev=ele;
                 else if(ele-prev!=1)return 0;
@@ -29,7 +28,7 @@ public:
                 }
                 prev=ele;
             }
-            cout<<endl;
+            // cout<<endl;
             for(int i=0;i<dup.size();i++){
                 pq.push(-dup[i]);
             }
