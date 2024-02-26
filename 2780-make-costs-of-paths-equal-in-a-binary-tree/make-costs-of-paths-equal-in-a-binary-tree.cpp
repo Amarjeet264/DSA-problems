@@ -4,10 +4,10 @@ class Solution {
         if(node>cost.size()){
             return 0;
         }
-        int left=cost[node-1]+inc(2*node,cost,n);
-        int right=cost[node-1]+inc(2*node+1,cost,n);
+        int left=inc(2*node,cost,n);
+        int right=inc(2*node+1,cost,n);
         sum+=abs(left-right);
-        return max(left,right);
+        return cost[node-1]+max(left,right);
     }
 public:
     int minIncrements(int n, vector<int>& cost) {
