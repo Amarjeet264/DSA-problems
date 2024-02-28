@@ -14,8 +14,7 @@ public:
         ListNode* curr=head->next;
         // ListNode* dummy=new ListNode(-1);
         // dummy->next=curr;
-        ListNode* dummy=new ListNode(-1);
-        ListNode* curr1=dummy;
+        ListNode* curr1=head;
         int sum=0;
         while(curr){
             // cout<<curr->val<<" ";
@@ -27,6 +26,6 @@ public:
             }
             curr=curr->next;
         }
-        return dummy->next;
+        return head->next;
     }
 };
