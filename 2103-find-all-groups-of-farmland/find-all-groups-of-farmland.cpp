@@ -32,7 +32,6 @@ public:
         m = land[0].size();
         vector<vector<int>> vis(n, vector<int>(m, 0));
         vector<vector<int>> ans;
-        
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
                 if (land[i][j] == 1 && !vis[i][j]) {
