@@ -13,11 +13,11 @@ public:
                 return cnt;
             }
             else{
-                if(!pq.empty()){
+                // if(!pq.empty()){
                     long long y=pq.top();
                     pq.pop();
                     pq.push(min(x,y)*2+max(x,y));
-                }
+                // }
             }
             cnt++;
         }
