@@ -17,7 +17,11 @@ public:
                 }
             }
             else{
-                mp[z]++;
+                int m=arr[i]%k;
+                if(m<0){
+                    m+=k;
+                }
+                mp[m]++;
             }
         }
         // cout<<(-2%3);
