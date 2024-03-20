@@ -5,7 +5,7 @@ public:
         for(int i=0;i<arr.size();i++){
             // int x=(k-abs(arr[i])%k)%k;
             int z=arr[i]%k;
-            if(z<0){
+            if(arr[i]<0){
                 z+=k;
             }
             int x=(k-z)%k;
