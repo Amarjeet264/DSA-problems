@@ -5,13 +5,18 @@ class Solution {
             x=x*var[0];
             x=x%10;
         }
-        x=x%10;
+        // x=x%10;
         long long z=x;
-        x=1;
+        // x=1;
         // long long mod=1e;
-        while(var[2]--){
+        if(var[2]==0){
+            x=1;
+        }
+        while(var[2]>1){
             x=x*z;
+            // cout<<z<<" "<<x<<endl;
             x=x%var[3];
+            var[2]-=1;
             // x=x%mod;
         }
         x=x%var[3];
