@@ -1,5 +1,4 @@
 class Solution {
-    // unordered_map<int,int>mp;
     int mod=1e9+7;
     int dp[1005][1005];
     long long rearrange(int n,int k){
@@ -12,8 +11,6 @@ class Solution {
         }
         long long ans=rearrange(n-1,k-1)+((n-1)*rearrange(n-1,k)%mod);
         ans=ans%mod;
-        // ans=(ans+((n-1)*rearrange(n-1,k)%mod)%mod);
-        // ans=ans%mod;
         return dp[n][k]= ans;
     }
 public:
