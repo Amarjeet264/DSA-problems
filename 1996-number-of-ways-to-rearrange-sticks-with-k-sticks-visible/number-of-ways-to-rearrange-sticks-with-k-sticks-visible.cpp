@@ -1,6 +1,6 @@
 class Solution {
     int mod=1e9+7;
-    int dp[1005][1005];
+    int dp[1001][1001];
     long long rearrange(int n,int k){
         if(n==0){
             return k==0;
