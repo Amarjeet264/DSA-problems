@@ -7,9 +7,6 @@ public:
                 st.pop();
                 k--;
             }
-            // if(st.empty()&&num[i]=='0'){
-            //     continue;
-            // }
             st.push(num[i]);
         }
         while(k!=0&&!st.empty()){
