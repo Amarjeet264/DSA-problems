@@ -63,12 +63,6 @@ public:
                 }
             }
         }
-        for(int i=0;i<matrix.size();i++){
-            for(int j=0;j<matrix[0].size();j++){
-                cout<<mat[i][j]<<" ";
-            }
-            cout<<endl;
-        }
         int ans=0;
         for(int i=0;i<mat.size();i++){
             ans=max(ans,largest(mat[i],matrix[0].size()));
