@@ -1,26 +1,31 @@
-#include <vector>
-using namespace std;
-
 class ProductOfNumbers {
-    vector<int> products;
+    vector<int>vec;
 public:
     ProductOfNumbers() {
-        products.push_back(1);  // Initial product to handle multiplication properly
+        vec.push_back(1);
     }
     
     void add(int num) {
-        if (num == 0) {
-            products.clear();  // Clear the products as any product now will be zero
-            products.push_back(1);  // Reset starting product for new segment
-        } else {
-            int lastProduct = products.back();
-            products.push_back(lastProduct * num);
+        if(num==0){
+            vec.clear();
+            vec.push_back(1);
+        }
+        else{
+            int last=vec.back();
+            vec.push_back(last*num);
         }
     }
     
     int getProduct(int k) {
-        int size = products.size();
-        if (k >= size) return 0;  // If k is larger than the number of products, include zero
-        return products.back() / products[size - 1 - k];
+        int n=vec.size();
+        if(k>=n)return 0;
+        return vec.back()/vec[n-k-1];
     }
 };
+
+/**
+ * Your ProductOfNumbers object will be instantiated and called as such:
+ * ProductOfNumbers* obj = new ProductOfNumbers();
+ * obj->add(num);
+ * int param_2 = obj->getProduct(k);
+ */
