@@ -30,7 +30,7 @@ public:
                 x+=s[vec[i][j]];
                 // cout<<vec[i][j]<<" ";
             }
-            cout<<endl;
+            // cout<<endl;
             sort(x.begin(),x.end());
             for(int j=0;j<x.size();j++){
                 mp[vec[i][j]]=x[j];
