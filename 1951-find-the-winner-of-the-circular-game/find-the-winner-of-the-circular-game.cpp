@@ -1,6 +1,6 @@
 class Solution {
     int ans=-1;
-    void rec(vector<int>vec,int k,int i){
+    void rec(vector<int>&vec,int k,int i){
         if(vec.size()==1){
             ans=vec[0];
             return;
