@@ -7,8 +7,7 @@ class Solution {
         queue<pair<int, int>> q;
         q.push({i, j});
         vis[i][j] = 1;
-        farmland = {i, j, i, j}; // Initialize farmland with current cell
-        
+        farmland = {i, j, i, j};
         while (!q.empty()) {
             auto [row, col] = q.front();
             q.pop();
