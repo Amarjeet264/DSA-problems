@@ -22,7 +22,7 @@ class Solution {
             if(root->right)ans.push_back(root->right);
             root->left=nullptr;
             root->right=nullptr;
-            delete(root);
+            // delete(root);
             root=nullptr;
             // return;
         }
