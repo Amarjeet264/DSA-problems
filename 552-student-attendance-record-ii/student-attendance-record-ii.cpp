@@ -22,7 +22,7 @@ class Solution {
     }
 public:
     int checkRecord(int n) {
-        vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(2,vector<int>(4,-1)));
+        vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(2,vector<int>(3,-1)));
         int late=0;
         return check(n,1,late,dp);
     }
