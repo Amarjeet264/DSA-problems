@@ -7,7 +7,6 @@ class Solution {
         }
         if(i>0)s[i]='1';
         else{
-            reverse(s.begin(),s.end());
             s+='1';
             reverse(s.begin(),s.end());
         }
