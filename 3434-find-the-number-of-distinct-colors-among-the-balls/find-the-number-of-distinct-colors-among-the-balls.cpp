@@ -25,7 +25,7 @@ public:
                 if(col.find(color)==col.end())count++;
                 ball[ballno]=color;
                 col[color]++;
-                cout<<i<<endl;
+                // cout<<i<<endl;
             }
             ans[i]=count;
         }
