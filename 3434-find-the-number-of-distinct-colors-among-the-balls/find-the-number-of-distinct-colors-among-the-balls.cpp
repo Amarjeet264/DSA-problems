@@ -8,14 +8,14 @@ public:
         for(int i=0;i<queries.size();i++){
             int ballno=queries[i][0];
             int color=queries[i][1];
-            if(ball.find(ballno)==ball.end()){
-                if(col.find(color)==col.end()){
-                    count++;
-                }
-                ball[ballno]=color;
-                col[color]++;
-            }
-            else{
+            // if(ball.find(ballno)==ball.end()){
+            //     if(col.find(color)==col.end()){
+            //         count++;
+            //     }
+            //     ball[ballno]=color;
+            //     col[color]++;
+            // }
+            // else{
                 int prevcolorofball=ball[ballno];
                 col[prevcolorofball]--;
                 if(col[prevcolorofball]==0){
@@ -25,8 +25,7 @@ public:
                 if(col.find(color)==col.end())count++;
                 ball[ballno]=color;
                 col[color]++;
-                // cout<<i<<endl;
-            }
+            // }
             ans[i]=count;
         }
         return ans;
