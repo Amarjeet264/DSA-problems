@@ -47,7 +47,7 @@ public:
             auto [d, u] = pq.top();
             pq.pop();
 
-            if (d > dis[u]) continue;
+            // if (d > dis[u]) continue;
 
             for (auto& [v, w] : adj[u]) {
                 if (dis[v] > dis[u] + w) {
