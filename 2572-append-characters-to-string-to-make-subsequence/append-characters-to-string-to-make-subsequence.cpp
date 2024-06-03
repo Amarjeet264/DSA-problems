@@ -10,12 +10,6 @@ public:
             }
             else{
                 i++;
-                // if(j==0){
-                //     i++;
-                // }
-                // else{
-                //     break;
-                // }
             }
         }
         if(j==t.length()){
