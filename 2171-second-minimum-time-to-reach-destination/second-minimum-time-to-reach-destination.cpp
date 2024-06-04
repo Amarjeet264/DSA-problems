@@ -12,12 +12,13 @@ public:
         pq.push({0,1});
         dis[1]=0;
         int cnt=0;
+        int ch=change*2;
         while(!pq.empty()){
             int d=pq.top().first;
             int node=pq.top().second;
             pq.pop();
-            if ((d/change)%2 == 1){
-                d+=(change-d%change);
+            if ((d%ch)>=change){
+                d=(d-(d%ch))+ch;
             }
             if(node==n){
                 cnt++;
