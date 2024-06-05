@@ -22,15 +22,14 @@ public:
                 }
             }
         }
-        int c=0;
+        int maxi=0;
         for(int i=1;i<n;i++){
-            dis[i]=2*dis[i];
-            if(dis[i]>pat[i]){
-                int cap=pat[i]*((dis[i]-1)/pat[i])+dis[i];
-                c=max(c,cap);
-            }
-            c=max(c,dis[i]);
+            // int x=pat[i];
+            int y=(2*dis[i]-1)/pat[i];
+            y=y*pat[i];
+            int x=y+2*dis[i];
+            maxi=max(maxi,max(x,2*dis[i]));
         }
-        return c+1;
+        return maxi+1;
     }
 };
