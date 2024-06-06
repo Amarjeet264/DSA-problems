@@ -5,7 +5,7 @@ public:
             return 0;
         }
         s+=s;
-        if(s.find(goal) != std::string::npos)return 1;
+        if(s.find(goal) != string::npos)return 1;
         return 0;
     }
 };
