@@ -1,30 +1,15 @@
 class Solution {
-    int place1(string s){
+    int place1(string s,char ch){
         int i=0;
         bool one=true;
         int cnt=0;
         while(i<s.size()){
             if(one){
-                if(s[i]!='1'){
+                if(s[i]!=ch){
                     cnt++;
                 }
             }
             one=!one;
-            i++;
-        }
-        return cnt;
-    }
-    int place0(string s){
-        int i=0;
-        int cnt=0;
-        bool zero=true;
-        while(i<s.size()){
-            if(zero){
-                if(s[i]!='0'){
-                    cnt++;
-                }
-            }
-            zero=!zero;
             i++;
         }
         return cnt;
@@ -45,11 +30,11 @@ public:
             return -1;
         }
         if(cnt0>cnt1){
-            return place0(s);
+            return place1(s,'0');
         }
         else if(cnt1>cnt0){
-            return place1(s);
+            return place1(s,'1');
         }
-        return min(place1(s),place0(s));
+        return min(place1(s,'1'),place1(s,'0'));
     }
 };
