@@ -77,7 +77,6 @@ public:
             }
         }
         if(s.size()>0){
-            // ans+=' ';
             string x=trie.search(s);
             if(trie.search(s)!="@"){
                 ans+=x;
