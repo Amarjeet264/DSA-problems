@@ -6,7 +6,7 @@ public:
         for(int i=0;i<n;i++){
             if(!isdigit(s[i])){
                 st.push(i);
-                cout<<i<<" ";
+                // cout<<i<<" ";
             }
             else{
                 if(!st.empty()){
