@@ -27,12 +27,6 @@ public:
         int n=arr.size();
         sort(arr.begin(),arr.end());
         comb(arr,n,target,0,temp);
-        // for(int i=0;i<ans.size();i++){
-        //     for(int j=0;j<ans[i].size();j++){
-        //         cout<<ans[i][j]<<" ";
-        //     }
-        //     cout<<endl;
-        // }
         return ans;
     }
 };
