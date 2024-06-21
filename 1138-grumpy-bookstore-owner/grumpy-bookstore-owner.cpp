@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
+        int sum=0;
+        for(int i=0;i<grumpy.size();i++){
+            if(grumpy[i]==0){
+                sum+=customers[i];
+            }
+        }
+        cout<<sum<<" ";
+        // if(minutes)
+        int maxi=sum;
+        int nayasum=sum;
+        int i=0;
+        int j=0;
+        while(j<customers.size()){
+            if(grumpy[j]==1){
+                nayasum+=customers[j];
+                cout<<nayasum<<" ";
+                // if(j-i+1<=minutes){
+                // }
+                while(i<j&&j-i+1>minutes){
+                    if(grumpy[i]==1){
+                        nayasum-=customers[i];
+                    }
+                    i++;
+                }
+                maxi=max(maxi,nayasum);
+            }
+            j++;
+        }
+        return maxi;
+    }
+};
