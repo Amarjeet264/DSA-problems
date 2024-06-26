@@ -33,9 +33,6 @@ class Solution {
 public:
     TreeNode* balanceBST(TreeNode* root) {
         balance(root);
-        // for(int i=0;i<vec.size();i++){
-        //     cout<<vec[i]<<" ";
-        // }
         TreeNode* newroot=maketree(0,vec.size()-1);
         return newroot;
     }
