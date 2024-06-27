@@ -12,7 +12,7 @@ public:
         i=0;
         j=mat[0].size()-1;
         if(j==0){
-            return sum;
+            // return sum;
         }
         while(i<mat.size()&&j>=0){
             sum+=mat[i][j];
