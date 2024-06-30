@@ -14,11 +14,11 @@ public:
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 int mod = (nums[i] + nums[j]) % k;
-                dp[j][mod] = max(dp[j][mod], dp[i][mod] + 1);
-                maxi = max(maxi, dp[j][mod] + 1);
+                dp[j][mod] = dp[i][mod] + 1;
+                maxi = max(maxi, dp[j][mod]);
             }
         }
 
-        return maxi ; // add 1 because the sequence length starts from 1
+        return maxi+1 ; 
     }
 };
