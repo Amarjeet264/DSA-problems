@@ -24,9 +24,14 @@ class Disjointset{
         if(ulpu==ulpv){
             return;
         }
-        if(sizes[ulpu]>sizes[ulpv]) swap(ulpu,ulpv);
+        if(sizes[ulpu]>sizes[ulpv]){
+            parent[ulpv]=ulpu;
+            sizes[ulpu]+=sizes[ulpv];
+        }
+        else{
             parent[ulpu]=ulpv;
             sizes[ulpv]+=sizes[ulpu];
+        }
     }
     int maxSize()
     {
@@ -76,39 +81,6 @@ public:
             }
         }
         if(ds1.maxSize()!=n||ds2.maxSize()!=n)return -1;
-        // Disjointset ds(n+1);
-        // for(auto it:edges){
-        //     if(it[0]==3){
-        //         int x=it[1];
-        //         int y=it[2];
-        //         ds.unionbyr(x,y);
-        //     }
-        // }
-
-        // Disjointset ds1(n+1);
-        // int cnt=0;
-        // for(auto it:edges){
-        //     if(it[0]==1){
-        //         int x=it[1];
-        //         int y=it[2];
-        //         if(ds.findulpar(x)==ds.findulpar(y)||ds1.findulpar(x)==ds1.findulpar(y)){
-        //             cnt++;
-        //         }
-        //         else ds1.unionbyr(x,y);
-        //     }
-        // }
-        // int x=ds1.findulpar(1);
-        // Disjointset ds2(n+1);
-        // for(auto it:edges){
-        //     if(it[0]==2){
-        //         int x=it[1];
-        //         int y=it[2];
-        //         if(ds.findulpar(x)==ds.findulpar(y)||ds2.findulpar(x)==ds2.findulpar(y)){
-        //             cnt++;
-        //         }
-        //         else ds2.unionbyr(x,y);
-        //     }
-        // }
         return cnt;
     }
 };
