@@ -22,11 +22,6 @@ public:
             }
             flips+=flip_Count[i];
         }
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]==0){
-                zero=1;
-            }
-        }
         for(int i=nums.size()-k+1;i<nums.size();i++){
             if(nums[i]==1&&flips%2){
                 return -1;
@@ -38,7 +33,6 @@ public:
             }
             flips+=flip_Count[i];
         }
-        if(cnt==0&&zero==1)return -1;
         return cnt;
     }
 };
