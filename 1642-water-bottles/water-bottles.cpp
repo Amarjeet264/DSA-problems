@@ -6,7 +6,7 @@ public:
         while(numBottles>0){
             cnt += numBottles;
             numBottles += rem;
-            int exc = ((numBottles)/numExchange);
+            int exc = (numBottles/numExchange);
             rem = (numBottles%numExchange);
             numBottles = exc ;
         }
