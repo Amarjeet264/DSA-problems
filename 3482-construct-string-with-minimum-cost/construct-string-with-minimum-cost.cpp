@@ -1,9 +1,7 @@
 class TrieNode {
 public:
     unordered_map<char, TrieNode*> children;
-    long long cost;
-
-    TrieNode() : cost(LLONG_MAX) {}
+    long long cost=LLONG_MAX;
 };
 
 class Solution {
