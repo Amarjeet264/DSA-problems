@@ -7,10 +7,10 @@ public:
             int right = min(n,i+ranges[i]);
             to[left] = max(to[left],right);
         }
-        int currend = 0;
+        int currend = to[0];
         int maxend = to[0];
-        int taps = 0;
-        for(int i=0;i<=n;i++){
+        int taps = 1;
+        for(int i=1;i<=n;i++){
             if(i>maxend){
                 return -1;
             }
