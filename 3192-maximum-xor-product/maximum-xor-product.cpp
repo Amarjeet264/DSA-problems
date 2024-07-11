@@ -6,8 +6,8 @@ public:
         long long xXora = 0;
         long long xXorb = 0;
         for(ll i=49;i>=n;i--){
-            bool bit_a = ((a>>i)&1)>0;
-            bool bit_b = ((b>>i)&1)>0;
+            bool bit_a = ((a>>i)&1);
+            bool bit_b = ((b>>i)&1);
             if(bit_a)xXora = (xXora^(1ll<<i));
             if(bit_b)xXorb = (xXorb^(1ll<<i));
         }
