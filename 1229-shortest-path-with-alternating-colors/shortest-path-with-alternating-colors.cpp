@@ -10,11 +10,11 @@ public:
         }
         vector<int>ans(n, INT_MAX);
         queue<pair<int, pair<int, char>>>q;
-        q.push({0, {0, 'R'}});
-        q.push({0, {0, 'B'}});
+        q.push({0, {0, '#'}});
+        q.push({0, {0, '#'}});
         map<pair<int, char>, int>m;
-        m[{0,'R'}] = 1;
-        m[{0,'B'}] = 1;
+        m[{0,'#'}] = 1;
+        m[{0,'#'}] = 1;
         ans[0] = 0;
         while(!q.empty()){
             int node = q.front().first;
