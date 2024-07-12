@@ -1,46 +1,43 @@
 class Solution {
-    void bfs(vector<int>&ans,vector<pair<int,char>>adj[],int n){
-         map<pair<int,char>,int>mp;
-         priority_queue<pair<int,pair<int,char>>,vector<pair<int,pair<int,char>>>,greater<pair<int,pair<int,char>>>>pq;
-        pq.push({0,{0,'R'}});
-        pq.push({0,{0,'B'}});
-        ans[0]=0;
-        mp[{0,'R'}]=1;
-        mp[{0,'B'}]=1;
-        while(!pq.empty()){
-            int dis=pq.top().first;
-            char col=pq.top().second.second;
-            int node=pq.top().second.first;
-            pq.pop();
-            for(auto it:adj[node]){
-                pair<int,char>p=it;
-                if(col!=p.second){
-                    if(mp.find({p.first,p.second})==mp.end()){
-                        pq.push({dis+1,{p.first,p.second}});
-                        mp[{p.first,p.second}]=1;
+public:
+    vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& redEdges, vector<vector<int>>& blueEdges) {
+        vector<pair<int, char>>adj[n];
+        for(auto i:redEdges){
+            adj[i[0]].push_back({i[1],'R'});
+        }
+        for(auto i:blueEdges){
+            adj[i[0]].push_back({i[1],'B'});
+        }
+        vector<int>ans(n, INT_MAX);
+        queue<pair<int, pair<int, char>>>q;
+        q.push({0, {0, 'R'}});
+        q.push({0, {0, 'B'}});
+        map<pair<int, char>, int>m;
+        m[{0,'R'}] = 1;
+        m[{0,'B'}] = 1;
+        ans[0] = 0;
+        while(!q.empty()){
+            int node = q.front().first;
+            int dis = q.front().second.first;
+            char color = q.front().second.second;
+            q.pop();
+            for(auto i:adj[node]){
+                int newNode = i.first;
+                char newColor = i.second;
+                if(color!=newColor){
+                    ans[newNode] = min(ans[newNode], 1+dis);
+                    if(m.find({newNode, newColor})==m.end()){
+                        q.push({newNode, {dis+1,newColor}});
                     }
-                    if(ans[p.first]>dis+1)ans[p.first]=dis+1;
+                    m[{newNode, newColor}] = 1;
                 }
             }
         }
-    }
-public:
-    vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& red, vector<vector<int>>& blue) {
-        vector<pair<int,char>>adj[n];
-        for(auto it:red){
-            adj[it[0]].push_back({it[1],'R'});
-        }
-        for(auto it:blue){
-            adj[it[0]].push_back({it[1],'B'});
-        }
-        vector<int>ans(n,INT_MAX);
-        ans[0]=0;
-        bfs(ans,adj,n);
-        for(int i=0;i<n;i++){
+        for(int i=0;i<ans.size();i++){
             if(ans[i]==INT_MAX){
-                ans[i]=-1;
+                ans[i] = -1;
             }
         }
-        return ans;
+        return ans;
     }
 };
