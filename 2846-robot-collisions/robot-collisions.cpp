@@ -1,50 +1,53 @@
 class Solution {
 public:
     vector<int> survivedRobotsHealths(vector<int>& positions, vector<int>& healths, string directions) {
-        vector<pair<int,int>>vec;
-        for(int i=0;i<positions.size();i++){
-            vec.push_back({positions[i],i});
+        // Pair each robot's position with its index and sort by positions
+        vector<pair<int, int>> robots;
+        int n = positions.size();
+        for (int i = 0; i < n; ++i) {
+            robots.push_back({positions[i], i});
         }
-        sort(vec.begin(),vec.end());
-        stack<int>st;
-        for(int i=0;i<positions.size();i++){
-            // cout<<vec[i].first<<" "<<vec[i].second<<endl;
-            if(st.empty()){
-                st.push(vec[i].second);
+        sort(robots.begin(), robots.end());
+        
+        stack<int> stk; // Stack to store indices of robots
+        for (int i = 0; i < n; ++i) {
+            int idx = robots[i].second;
+            char dir = directions[idx];
+            
+            // Resolve collisions
+            while (!stk.empty() && directions[stk.top()] == 'R' && dir == 'L') {
+                int topIdx = stk.top();
+                if (healths[topIdx] == healths[idx]) {
+                    // Both robots destroy each other
+                    healths[topIdx] = 0;
+                    healths[idx] = 0;
+                    stk.pop();
+                    break;
+                } else if (healths[topIdx] > healths[idx]) {
+                    // The robot on the stack wins
+                    healths[topIdx] -= 1;
+                    healths[idx] = 0;
+                    break;
+                } else {
+                    // The current robot wins
+                    healths[idx] -= 1;
+                    healths[topIdx] = 0;
+                    stk.pop();
+                }
             }
-            else{
-                if((directions[vec[i].second]=='R'&&directions[st.top()]=='L')||(directions[vec[i].second]==directions[st.top()])){
-                    st.push(vec[i].second);
-                    continue;
-                }
-                while(!st.empty()&&directions[st.top()]!=directions[vec[i].second]&&healths[st.top()]<healths[vec[i].second]){
-                    healths[st.top()]=0;
-                    st.pop();
-                    healths[vec[i].second]-=1;
-                }
-                if(!st.empty()&&directions[vec[i].second]!=directions[st.top()]&&healths[st.top()]==healths[vec[i].second]){
-                    healths[st.top()]=0;
-                    st.pop();
-                    healths[vec[i].second]=0;
-                    continue;
-                }
-                if(!st.empty()&&directions[vec[i].second]!=directions[st.top()]&&healths[vec[i].second]>0){
-                    healths[st.top()]-=1;
-                    healths[vec[i].second]=0;
-                    if(healths[st.top()]==0){
-                        st.pop();
-                    }
-                    continue;
-                }
-                if(healths[vec[i].second]>0)st.push(vec[i].second);
-            }
-        }
-        vector<int>ans;
-        for(int i=0;i<healths.size();i++){
-            if(healths[i]>0){
-                ans.push_back(healths[i]);
+            
+            if (healths[idx] > 0) {
+                stk.push(idx); // Push the index of the current robot
             }
         }
-        return ans;
+        
+        vector<int> survivedHealths;
+        for (int i = 0; i < n; ++i) {
+            if (healths[i] > 0) {
+                survivedHealths.push_back(healths[i]);
+            }
+        }
+        
+        return survivedHealths;
     }
 };
