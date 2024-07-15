@@ -1,21 +1,17 @@
 class Solution {
 public:
     int partitionString(string s) {
-        vector<int>pre(26,0);
-        vector<int>dup(26,0);
+        vector<int>pre(26,-1);
+        
         int cnt=1;
+        int start = 0;
         for(int i=0;i<s.length();i++){
-            if(pre[s[i]-'a']==0){
-                pre[s[i]-'a']=1;
-            }
-            else{
+            if(pre[s[i]-'a']>=start){
                 cnt++;
-                pre=dup;
-                pre[s[i]-'a']=1;
+                start = i;
             }
-            // cout<<i<<" "<<cnt<<endl;
+            pre[s[i]-'a'] = i;
         }
-        // cnt++;
         return cnt;
     }
 };
