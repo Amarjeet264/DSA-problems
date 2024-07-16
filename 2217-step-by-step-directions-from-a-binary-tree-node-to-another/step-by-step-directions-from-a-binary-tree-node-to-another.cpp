@@ -18,14 +18,14 @@ class Solution {
         bool left = findPath(root->left,tar,path);
         if(left){
             path += 'L';
-            return true;
+            // return true;
         }
         bool right = findPath(root->right,tar,path);
         if(right){
             path += 'R';
-            return true;
+            // return true;
         }
-        return false;
+        return left||right;
     }
 public:
     string getDirections(TreeNode* root, int startValue, int destValue) {
