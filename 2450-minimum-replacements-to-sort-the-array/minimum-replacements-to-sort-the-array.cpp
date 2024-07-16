@@ -10,6 +10,7 @@ public:
                 if(nums[i]%prev!=0){
                     tot++;
                     prev=nums[i]/tot;
+                    // cout<<tot<<" "<<prev<<endl;
                 }
                 ans+=tot-1;
             }
