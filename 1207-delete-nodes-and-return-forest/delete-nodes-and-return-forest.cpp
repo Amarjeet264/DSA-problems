@@ -24,7 +24,6 @@ class Solution {
             root->right=nullptr;
             // delete(root);
             root=nullptr;
-            // return;
         }
     }
 public:
