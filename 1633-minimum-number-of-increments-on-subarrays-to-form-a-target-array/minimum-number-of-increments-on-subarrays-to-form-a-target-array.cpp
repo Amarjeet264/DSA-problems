@@ -6,7 +6,7 @@ public:
         for(int i=0;i<target.size();i++){
             long long curr = target[i];
             if(curr>prev){
-                cnt+=abs(curr-prev);
+                cnt+=(curr-prev);
             }
             prev = curr;
         }
