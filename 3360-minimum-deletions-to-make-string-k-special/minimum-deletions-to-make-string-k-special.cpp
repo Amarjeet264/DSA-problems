@@ -1,29 +1,24 @@
 class Solution {
 public:
     int minimumDeletions(string word, int k) {
-        unordered_map<char,int>mp;
+        vector<int>vec(26,0);
         for(int i=0;i<word.size();i++){
-            mp[word[i]]++;
+            vec[word[i]-'a']++;
         }
-        vector<int>fre;
-        for(auto it:mp){
-            fre.push_back(it.second);
-        }
-        sort(fre.begin(),fre.end());
-        int mx=fre.back();
-        int ans=1e9;
-        for(int i=1;i<=mx;i++){
-            int cnt=0;
-            for(int j=0;j<fre.size();j++){
-                if(fre[j]>i+k){
-                    cnt+=fre[j]-i-k;
+        int mini = word.size();
+        for(int i=0;i<26;i++){
+            int dele = 0;
+            for(int j=0;j<26;j++){
+                if(j==i)continue;
+                if(vec[j]<vec[i]){
+                    dele += vec[j];
                 }
-                else if(fre[j]<i){
-                    cnt+=fre[j];
+                else if(vec[j]-vec[i]>k){
+                    dele += (vec[j]-vec[i]-k);
                 }
             }
-            ans=min(ans,cnt);
+            mini = min(mini,dele);
         }
-        return ans;
+        return mini;
     }
 };
