@@ -2,20 +2,19 @@ class Solution {
 public:
     int minFlipsMonoIncr(string s) {
         int n=s.length();
-        vector<int>left(n,0);
-        vector<int>right(n,0);
         int cnt=0;
-        int mini=n;
+        vector<int>right(n);
+        vector<int>left(n);
         for(int i=0;i<n;i++){
             left[i]=cnt;
-            if(s[i]=='0'){
+            if(s[i]=='1'){
                 cnt++;
             }
         }
-        // cout<<mini<<" ";
+        int mini = INT_MAX;
         mini=min(mini,cnt);
         mini=min(mini,n-cnt);
-        cnt=0;
+        cnt = 0;
         for(int i=n-1;i>=0;i--){
             right[i]=cnt;
             if(s[i]=='0'){
@@ -23,7 +22,13 @@ public:
             }
         }
         for(int i=0;i<n;i++){
-            mini=min(mini,i-left[i]+right[i]);
+            // cout<<right[i]<<" ";
+            if(s[i]=='0'){
+                mini = min(mini,1+right[i]+left[i]);
+            }
+            else{
+                mini = min(mini,right[i]+left[i]);
+            }
         }
         return mini;
     }
