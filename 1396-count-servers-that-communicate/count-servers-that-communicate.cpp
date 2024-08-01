@@ -4,22 +4,20 @@ public:
         int n=grid.size();
         int m=grid[0].size();
         int cnt=0;
+        vector<int>row(n,0);
+        vector<int>col(m,0);
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(grid[i][j]==1){
-                    bool is=0;
-                    for(int k=0;k<n;k++){
-                        if(grid[k][j]==1&&k!=i){
-
-                            is=1;
-                        }
-                    }
-                    for(int k=0;k<m;k++){
-                        if(grid[i][k]==1&&k!=j){
-                            is=1;
-                        }
-                    }
-                    if(is){
+                    row[i]++;
+                    col[j]++;
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1){
+                    if(row[i]>1||col[j]>1){
                         cnt++;
                     }
                 }
