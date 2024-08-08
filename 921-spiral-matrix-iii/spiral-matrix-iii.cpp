@@ -1,35 +1,26 @@
 class Solution {
 public:
-    vector<vector<int>> spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
-        int i = rStart, j = cStart;
-        int diri = 0, dirj = 1; // directions to move
-        int twice = 2;
-        vector<vector<int>> res;
-        int moves = 1;
-        int next_moves = 2;
-
-        while (res.size() < rows * cols) {
-            if (i >= 0 && i < rows && j >= 0 && j < cols) {
-                res.push_back({i, j});
+    vector<vector<int>> spiralMatrixIII(int rows, int cols, int rstart, int cstart) {
+        int dr[4] = {0,1,0,-1};
+        int dc[4] = {1,0,-1,0};
+        vector<vector<int>>ans;
+        int steps = 0;
+        int i = 0 ;
+        ans.push_back({rstart,cstart});
+        while(ans.size()<rows*cols){
+            if(i==0||i==2){
+                steps++;
             }
-
-            i += diri;
-            j += dirj;
-            moves -= 1;
-            if (moves == 0) {
-                int temp = diri;
-                diri = dirj;
-                dirj = -temp; // right direction
-                twice -= 1;
-                if (twice == 0) {
-                    twice = 2;
-                    moves = next_moves;
-                    next_moves += 1;
-                } else {
-                    moves = next_moves - 1;
+            // cout<<rstart<<" "<<cstart<<endl;
+            for(int cnt = 0;cnt<steps;cnt++){
+                rstart = rstart + dr[i];
+                cstart = cstart + dc[i];
+                if(rstart>=0&&rstart <rows&&cstart >=0&&cstart <cols){
+                    ans.push_back({rstart,cstart});
                 }
             }
+            i=(i+1)%4;
         }
-        return res;
+        return ans;
     }
 };
