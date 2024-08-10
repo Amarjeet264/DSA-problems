@@ -22,11 +22,11 @@ class dsu{
         }
         if(rank[ulpv]>rank[ulpu]){
             parent[ulpu] = ulpv;
-            rank[ulpv]+=rank[ulpu];
+            rank[ulpv]++;
         }
         else{
             parent[ulpv] = ulpu;
-            rank[ulpu] += rank[ulpv];
+            rank[ulpu] ++;
         }
     }
 };
