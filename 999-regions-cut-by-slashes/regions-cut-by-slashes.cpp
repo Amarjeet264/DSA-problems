@@ -40,17 +40,11 @@ public:
         for(int i=1;i<=n;i++){
             int ele = 0 * (n+1) + i;
             ds.unionbyr(0,ele);
-        }
-        for(int i = 1;i<=n;i++){
-            int ele = i * (n+1);
+            ele = n * (n+1) + i;
             ds.unionbyr(0,ele);
-        }
-        for(int i = 1;i<=n;i++){
-            int ele = i * (n+1) + n;
+            ele = i * (n+1) + n;
             ds.unionbyr(0,ele);
-        }
-        for(int i = 1;i<=n;i++){
-            int ele = n * (n+1) + i;
+            ele = i * (n+1);
             ds.unionbyr(0,ele);
         }
         int cnt = 1;
