@@ -10,6 +10,7 @@
  * };
  */
 class Solution {
+    unordered_map<int,vector<TreeNode*>>mp;
     vector<TreeNode*>all(int n){
         if(n%2==0){
             return {};
@@ -17,6 +18,9 @@ class Solution {
         if(n==1){
             TreeNode* naya = new TreeNode(0);
             return {naya};
+        }
+        if(mp.find(n)!=mp.end()){
+            return mp[n];
         }
         vector<TreeNode*>res;
         for(int i=1;i<n;i+=2){
@@ -31,7 +35,7 @@ class Solution {
                 }
             }
         }
-        return res;
+        return mp[n] = res;
     }
 public:
     vector<TreeNode*> allPossibleFBT(int n) {
