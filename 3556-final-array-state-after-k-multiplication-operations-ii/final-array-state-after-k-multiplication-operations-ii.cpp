@@ -47,9 +47,9 @@ public:
         int i = 0;
         vector<int>ans(nums.size());
         for(auto it:st){
-            long long currFinal = (p * it.first) % mod;  // Ensure multiplication is done in long long
-            if (i < extra) {
-                currFinal = (currFinal * multi) % mod;
+            long long currFinal = p *it.first%mod;
+            if(i<extra){
+                currFinal = (currFinal*multi)%mod;
             }
             ans[it.second] = currFinal;
             i++;
