@@ -1,32 +1,35 @@
 class Solution {
 public:
-    int findCheapestPrice(int n, vector<vector<int>>& trains, int source, int destination, int k) {
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
         vector<pair<int,int>>adj[n];
-        for(int i=0;i<trains.size();i++){
-            adj[trains[i][0]].push_back({trains[i][1],trains[i][2]});
+        for(int i = 0;i<flights.size();i++){
+            adj[flights[i][0]].push_back({flights[i][1],flights[i][2]});
         }
-        queue<pair<int,pair<int,int>>>pq;
-        pq.push({0,{0,source}});
-        vector<int>dis(n,INT_MAX);
-        dis[source]=0;
-        while(!pq.empty()){
-            int d=pq.front().first;
-            int stops=pq.front().second.first;
-            int node=pq.front().second.second;
-            pq.pop();
-            if(node==destination){
+        queue<pair<int,pair<int,int>>>q;
+        vector<int>dist(n,INT_MAX);
+        q.push({0,{0,src}});
+        dist[src] = 0;
+        int mini = INT_MAX;
+        while(!q.empty()){
+            auto it = q.front();
+            int d = it.first;
+            int stops = it.second.first;
+            int node = it.second.second;
+            q.pop();
+            if(stops>k+1){
                 continue;
             }
-            if(stops>k)continue;
-            for(auto it:adj[node]){
-                int w=it.second;
-                int adjn=it.first;
-                if(dis[adjn]>d+w){
-                    dis[adjn]=d+w;
-                    pq.push({d+w,{stops+1,adjn}});
+            if(node == dst){
+                mini = min(mini,d);
+                continue;
+            }
+            for(auto adjNode:adj[node]){
+                if(dist[adjNode.first]>d+adjNode.second){
+                    dist[adjNode.first] = d+adjNode.second;
+                    q.push({dist[adjNode.first],{stops+1,adjNode.first}});
                 }
             }
         }
-        return dis[destination]==INT_MAX?-1:dis[destination];
+        return mini==INT_MAX?-1:mini;
     }
 };
