@@ -16,7 +16,7 @@ public:
             }
             if(i>=m&&idx<original.size())return {};
         }
-        if(i!=m||j!=0){
+        if(i!=m){
             return {};
         }
         return ans;
