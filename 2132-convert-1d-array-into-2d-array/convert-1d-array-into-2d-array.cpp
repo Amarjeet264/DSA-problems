@@ -5,6 +5,9 @@ public:
         int idx = 0;
         int i = 0;
         int j = 0;
+        if(original.size()>m*n){
+            return {};
+        }
         while(idx<original.size()){
             ans[i][j] = original[idx++];
             if(j==n-1){
@@ -14,7 +17,6 @@ public:
             else{
                 j++;
             }
-            if(i>=m&&idx<original.size())return {};
         }
         if(i!=m){
             return {};
