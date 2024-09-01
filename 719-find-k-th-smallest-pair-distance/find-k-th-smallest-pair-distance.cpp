@@ -6,10 +6,12 @@ class Solution {
         while(i<nums.size()){
             while(j<nums.size()&&nums[j]-nums[i]<=diff){
                 j++;
+                // count++;
             }
             j--;
             count+=j-i;
             i++;
+            // if(diff==5)cout<<i<<" "<<j<<" "<<count<<endl;
         }
         return count;
     }
