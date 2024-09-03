@@ -10,54 +10,34 @@
  * };
  */
 class Solution {
+    void make_parent(TreeNode* root,int par,vector<int>adj[]){
+        if(!root){
+            return ;
+        }
+        adj[root->val].push_back(par);
+        if(par!=-1){
+            adj[par].push_back(root->val);
+        }
+        make_parent(root->left,root->val,adj);
+        make_parent(root->right,root->val,adj);
+    }
+    void dfs(int node , vector<int>&vis,int cnt ,int &maxi,vector<int>adj[]){
+        maxi = max(maxi ,cnt);
+        vis[node] = 1;
+        for(auto it:adj[node]){
+            if(it!=-1&&vis[it]==0){
+                dfs(it,vis,cnt+1,maxi,adj);
+            }
+        }
+    }
 public:
     int amountOfTime(TreeNode* root, int start) {
-        queue<TreeNode*>q;
-        map<TreeNode*,TreeNode*>parent;
-        q.push(root);
-        TreeNode* sta=nullptr;
-        while(!q.empty()){
-            TreeNode* fr=q.front();
-            q.pop();
-            if(fr->val==start){
-                sta=fr;
-            }
-            if(fr->left){
-                parent[fr->left]=fr;
-                q.push(fr->left);
-            }
-             if(fr->right){
-                parent[fr->right]=fr;
-                q.push(fr->right);
-            }
-        }
-        queue<TreeNode*>q1;
-        q1.push(sta);
-        vector<int>ans;
-        map<TreeNode*,int>mp;
-        mp[sta]++;
-        int d=0;
-        while(!q1.empty()){
-            int size=q1.size();
-            cout<<size<<" ";
-            for(int i=0;i<size;i++){
-                TreeNode* fr=q1.front();
-                q1.pop();
-                if(parent.find(fr)!=parent.end()&&mp.find(parent[fr])==mp.end()){
-                    mp[parent[fr]]++;
-                    q1.push(parent[fr]);
-                }
-                if(fr->left&&mp.find(fr->left)==mp.end()){
-                    mp[fr->left]++;
-                    q1.push(fr->left);
-                }
-                if(fr->right&&mp.find(fr->right)==mp.end()){
-                    mp[fr->right]++;
-                    q1.push(fr->right);
-                }
-            }
-            d++;
-        }
-        return d-1;
+        int n = 1e5+1;
+        vector<int>adj[n];
+        make_parent(root,-1,adj);
+        vector<int>vis(n);
+        int maxi = 0;
+        dfs(start,vis,0,maxi,adj);
+        return maxi;
     }
 };
