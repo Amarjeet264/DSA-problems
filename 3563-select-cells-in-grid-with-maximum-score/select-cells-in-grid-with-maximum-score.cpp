@@ -1,47 +1,30 @@
 class Solution {
-public:
-    int recur(vector<vector<int>>& values, int idx, int mask_row, map<pair<int,int>, int>& dp)
-    {
-        int n= values.size();
-        if(idx == n)
+    int dp[101][2001];
+    int solve(int val,map<int,vector<int>>&mp,int mask){
+        if(val<=0){
             return 0;
-        
-        if(dp.find({idx, mask_row})!= dp.end())
-            return dp[{idx, mask_row}];
-        
-        int ans = 0;
-        int row = values[idx][1];
-        if((1<<row) & mask_row)
-            ans += recur(values, idx+1, mask_row, dp);
-        else
-        {
-            int j = idx;
-            while (j< n and values[idx][0]== values[j][0])
-                j++;
-            
-            int ans1= values[idx][0]+ recur(values, j, mask_row | (1<<row), dp);
-            int ans2 = recur(values, idx+1, mask_row, dp);
-            
-            ans= max(ans1, ans2);
         }
-            
-        return dp[{idx, mask_row}]= ans;
-        
-    }
-    int maxScore(vector<vector<int>>& grid) {
-        int n= grid.size();
-        int m= grid[0].size();
-        vector<vector<int>> values;
-        for(int i=0; i<n; i++)
-        {
-            for(int j=0; j<m; j++)
-            {
-                values.push_back({grid[i][j], i, j});
+        if(dp[val][mask]!=-1){
+            return dp[val][mask];
+        }
+        int nottake = solve(val-1,mp,mask);
+        int take = 0;
+        for(auto it:mp[val]){
+            if((mask&(1<<it))==0){
+                take = max(take,val+solve(val-1,mp,mask|(1<<it)));
             }
         }
-        sort(values.begin(), values.end());
-        map<pair<int,int>, int> dp;
-        
-        return recur(values, 0, 0, dp);
+        return dp[val][mask] =  max(take,nottake);
+    }
+public:
+    int maxScore(vector<vector<int>>& grid) {
+        map<int,vector<int>>mp;
+        memset(dp,-1,sizeof(dp));
+        for(int i = 0;i<grid.size();i++){
+            for(int j = 0;j<grid[0].size();j++){
+                mp[grid[i][j]].push_back(i);
+            }
+        }
+        return solve(100,mp,0);
     }
 };
