@@ -39,9 +39,7 @@ public:
                 values.push_back({grid[i][j], i, j});
             }
         }
-        
-        
-        sort(values.begin(), values.end(), greater<vector<int>>());
+        sort(values.begin(), values.end());
         map<pair<int,int>, int> dp;
         
         return recur(values, 0, 0, dp);
