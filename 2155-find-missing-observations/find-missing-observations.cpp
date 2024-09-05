@@ -6,7 +6,7 @@ public:
         for(int i= 0;i<m;i++){
             sum+=rolls[i];
         }
-        if((6*n+sum)/(n+m)<mean){
+        if((6*n+sum)/(n+m)<mean||(1*n+sum)>(n+m)*mean){
             return {};
         }
         vector<int>ans;
@@ -40,9 +40,9 @@ public:
                 break;
             }
         }
-        if(sum!=(m+x)*mean){
-            return {};
-        }
+        // if(sum!=(m+x)*mean){
+        //     return {};
+        // }
         return ans;
     }
 };
