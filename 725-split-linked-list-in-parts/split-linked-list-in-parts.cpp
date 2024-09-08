@@ -17,23 +17,31 @@ public:
             n++;
             curr = curr->next;
         }
-        vector<ListNode*> res(k, nullptr);
+        vector<ListNode*> res;
         curr = head;
-        for (int i = 0; i < k; i++) {
-            ListNode* x = new ListNode(0);
-            ListNode* y = x;
-            for (int j = 0; j < n / k; j++) {
-                y->next = curr;
-                y = curr;
-                curr = curr->next;
+        int harek = n/k;
+        int rem = n%k;
+        while(curr){
+            ListNode* dummy = new ListNode(-1);
+            ListNode* temp = dummy;
+            int cnt = 0;
+            int aage = 0;
+            if(rem!=0){
+                aage = 1;
             }
-            if (n % k > i) {
-                y->next = curr;
-                y = curr;
-                curr = curr->next;
+            while(curr&&cnt<(harek+aage)){
+                temp->next = new ListNode(curr->val);
+                curr= curr->next;
+                temp = temp->next;
+                cnt++;
             }
-            y->next = nullptr;
-            res[i] = x->next;
+            res.push_back(dummy->next);
+            if(rem){
+                rem-=1;
+            }
+        }
+        while(res.size()<k){
+            res.push_back(nullptr);
         }
         return res;
     }
