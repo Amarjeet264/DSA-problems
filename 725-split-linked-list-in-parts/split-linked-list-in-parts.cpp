@@ -29,7 +29,7 @@ public:
             if(rem!=0){
                 aage = 1;
             }
-            while(curr&&cnt<(harek+aage)){
+            while(cnt<(harek+aage)){
                 temp->next = new ListNode(curr->val);
                 curr= curr->next;
                 temp = temp->next;
