@@ -16,7 +16,7 @@ public:
             // Case 1: No left child
             if (!root->left) {
                 TreeNode* temp = root->right;
-                delete root;
+                // delete root;
                 return temp;
             }
             // Case 2: No right child
