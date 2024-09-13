@@ -22,7 +22,7 @@ public:
             // Case 2: No right child
             else if (!root->right) {
                 TreeNode* temp = root->left;
-                delete root;
+                // delete root;
                 return temp;
             }
             // Case 3: Two children
