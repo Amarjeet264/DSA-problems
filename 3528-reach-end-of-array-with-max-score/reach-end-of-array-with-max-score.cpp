@@ -6,7 +6,7 @@ public:
         int j=0;
         for(int i=1;i<nums.size();i++){
             if(nums[i]>temp || i==nums.size()-1){
-                ans= ans + (long long)((i-j)*temp);
+                ans= ans + ((i-j)*temp);
                 temp=nums[i];
                 j=i;
             }
