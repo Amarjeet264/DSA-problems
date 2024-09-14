@@ -10,61 +10,34 @@
  * };
  */
 class Solution {
-    int maxi=0;
-    int call(TreeNode* root){
+    int maxAns = 1;
+    pair<int,int>solve(TreeNode* root){
         if(!root){
-            return 0;
+            return {0,INT_MIN};
         }
-        if(!root->left&&!root->right){
-            return 0;
+        pair<int,int>left = solve(root->left);
+        pair<int,int>right = solve(root->right);
+        pair<int,int>res = {1,root->val};
+        if(root->val==left.second&&root->val==right.second){
+            maxAns = max(maxAns,1+left.first+right.first);
+            res.first = 1 + max(left.first,right.first);
         }
-        int left=call(root->left);
-        int right=call(root->right);
-        if(root->left&&root->right){
-            if(root->val==root->left->val&&root->val==root->right->val){
-                maxi=max(maxi,2+left+right);
-                return 1+max(left,right);
-            }
-            else{
-                if(root->val==root->left->val){
-                    maxi=max(maxi,1+left);
-                    return 1+left;
-                }
-                else if(root->right->val==root->val){
-                    maxi=max(maxi,1+right);
-                    return 1+right;
-                }
-                else{
-                    return 0;
-                }
-            }
+        else if(root->val==left.second){
+            maxAns = max(maxAns,1+left.first);
+            res.first = 1 + left.first;
         }
-        if(root->left){
-            if(root->val==root->left->val){
-                maxi=max(maxi,1+left);
-                return 1+left;
-            }
-            else{
-                // maxi=max(maxi,1);
-                return 0;
-            }
+        else if(root->val == right.second){
+            maxAns = max(maxAns,1+right.first);
+            res.first = 1+right.first;
         }
-        if(root->right){
-            if(root->val==root->right->val){
-                maxi=max(maxi,1+right);
-                return 1+right;
-            }
-            else{
-                // maxi=max(maxi,1);
-                return 0;
-            }
-        }
-        return 0;
+        return res;
     }
 public:
     int longestUnivaluePath(TreeNode* root) {
-        call(root);
-        if(maxi==0)return 0;
-        return maxi;
+        if(!root){
+            return 0;
+        }
+        solve(root);
+        return maxAns-1;
     }
 };
