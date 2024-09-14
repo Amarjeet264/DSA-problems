@@ -16,7 +16,7 @@ class Solution {
         else{
             take = 0;
         }
-        return take;
+        return dp[idx][flag] = take;
     }
 public:
     int maxTurbulenceSize(vector<int>& arr) {
