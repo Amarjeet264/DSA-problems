@@ -8,6 +8,7 @@ public:
         int x=0;
         int o=0;
         int u=0;
+        mp[{0,0,0,0,0}] = -1;
         for(int i=0;i<s.length();i++){
             if(s[i]=='a'){
                 a++;
@@ -30,10 +31,7 @@ public:
             temp.push_back(x%2);
             temp.push_back(o%2);
             temp.push_back(u%2);
-            if(a%2==0&&e%2==0&&x%2==0&&o%2==0&&u%2==0){
-                ans=i+1;
-            }
-            else if(mp.find(temp)!=mp.end()){
+            if(mp.find(temp)!=mp.end()){
                 ans=max(ans,i-mp[temp]);
             }
             else{
