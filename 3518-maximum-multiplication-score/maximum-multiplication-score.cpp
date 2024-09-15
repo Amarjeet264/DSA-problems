@@ -15,7 +15,7 @@ class Solution {
     }
 public:
     long long maxScore(vector<int>& a, vector<int>& b) {
-        vector<vector<long long>>dp(a.size(),vector<long long>(b.size(),-1));
+        vector<vector<long long>>dp(4,vector<long long>(b.size(),-1));
         return score(0,dp,b,0,a);
     }
 };
