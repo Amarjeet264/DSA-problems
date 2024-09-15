@@ -1,7 +1,7 @@
 class Solution {
 public:
     int findTheLongestSubstring(string s) {
-        unordered_map<vector<bool>,int>mp;
+        map<vector<bool>,int>mp;
         int ans = 0;
         int a=0;
         int e=0;
