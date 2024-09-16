@@ -5,25 +5,22 @@ public:
         for(int i = 0;i<nums.size();i++){
             int cnt = 1;
             bool neg = 0;
-            int idx = i+1;
-            while(idx<nums.size()){
-                if(!neg&&nums[idx]-nums[idx-1]==1){
+            int idx = i;
+            for(int j=i+1;j<nums.size();j++){
+                if(!neg&&nums[j]-nums[j-1]==1){
+                    i = j;
                     cnt++;
                 }
-                else if(neg&&nums[idx]-nums[idx-1]==-1){
-                    // i = idx-1;
+                else if(neg&&nums[j]-nums[j-1]==-1){
                     cnt++;
                 }
                 else{
-                    // i = idx - 1;
-                    idx-=2;
                     break;
                 }
                 neg = !neg;
-                idx++;
             }
-            if(i<idx){
-                i = idx;
+            if(i!=idx){
+                i--;
             }
             maxi = max(maxi ,cnt);
         }
