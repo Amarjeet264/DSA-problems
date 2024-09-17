@@ -7,8 +7,6 @@ public:
                 sum+=customers[i];
             }
         }
-        cout<<sum<<" ";
-        // if(minutes)
         int maxi=sum;
         int nayasum=sum;
         int i=0;
@@ -16,9 +14,6 @@ public:
         while(j<customers.size()){
             if(grumpy[j]==1){
                 nayasum+=customers[j];
-                cout<<nayasum<<" ";
-                // if(j-i+1<=minutes){
-                // }
                 while(i<j&&j-i+1>minutes){
                     if(grumpy[i]==1){
                         nayasum-=customers[i];
@@ -26,6 +21,9 @@ public:
                     i++;
                 }
                 maxi=max(maxi,nayasum);
+            }
+            else if(i==j){
+                i++;
             }
             j++;
         }
