@@ -22,9 +22,6 @@ public:
                 }
                 maxi=max(maxi,nayasum);
             }
-            // else if(i==j){
-            //     i++;
-            // }
             j++;
         }
         return maxi;
