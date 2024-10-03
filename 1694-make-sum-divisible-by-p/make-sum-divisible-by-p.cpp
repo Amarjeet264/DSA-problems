@@ -15,7 +15,6 @@ public:
             x+=nums[i];
             int rem=x%p;
             int r=(rem-k+p)%p;
-            // cout<<x<<" "<<rem<<" "<<r<<" "<<endl;
             if(mp.find(r)!=mp.end())mini=min(mini,i-mp[r]);
             mp[rem]=i;
         }
