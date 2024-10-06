@@ -7,7 +7,6 @@ public:
         int left = 0;
         int right = m-1;
         int bottom = n-1;
-        // int cnt = 0;
         vector<int>ans;
         while(left<=right&&top<=bottom){
             for(int i = left;i<=right;i++){
@@ -30,7 +29,6 @@ public:
                 }
                 left++;
             }
-            // cout<<top<<" "<<bottom<<" "<<left<<" "<<right<<endl;
         }
         return ans;
     }
