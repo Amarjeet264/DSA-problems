@@ -1,29 +1,15 @@
 class Solution {
 public:
     int minSwaps(string s) {
-        int cnt=0;
-        int close=0;
-        int open=0;
-        int ans=0;
-        for(int i=0;i<s.size();i++){
-            if(s[i]==']'){
-                close++;
-            }
-            else{
-                open++;
-            }
-            // if(open==close){
-            //     ans+=(ceil(cnt/2.0));
-            // }
-            if(open<close){
-                cnt++;
-                open=0;
-                close=0;
-            }
+        int size = 0;
+        int n = s.size();
+        for (int i = 0; i < n; i++) {
+            char ch = s[i];
+            if (ch == '[')
+                size++;
+            else if (size > 0) 
+                size--;
         }
-        // if(open==close){
-        //     ans+=(ceil(cnt/2.0));
-        // }
-        return ceil(cnt/2.0);
+        return (size + 1) / 2;
     }
 };
