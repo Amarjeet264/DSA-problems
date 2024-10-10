@@ -1,5 +1,5 @@
 class Solution {
-    bool isposs(long long mid,vector<int>arr){
+    bool isposs(long long mid,vector<int>&arr){
         vector<long long>nums ;
         for(int i=0;i<arr.size();i++){
             nums.push_back((long long)arr[i]);
@@ -11,9 +11,6 @@ class Solution {
             }
             nums[i] = nums[i] - buff;
             buff = mid - nums[i];
-            // if(nums[i]>mid)return 0;
-            // buff = mid-nums[i];
-            // nums[i+1] = nums[i+1]-buff;
         }
         return 1;
     }
