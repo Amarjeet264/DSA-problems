@@ -1,9 +1,5 @@
 class Solution {
-    bool isposs(long long mid,vector<int>&arr){
-        vector<long long>nums ;
-        for(int i=0;i<arr.size();i++){
-            nums.push_back((long long)arr[i]);
-        }
+    bool isposs(long long mid,vector<long long>nums){
         long long buff = 0;
         for(int i=0;i<nums.size();i++){
             if(nums[i]>mid&&nums[i]-mid>buff){
@@ -27,9 +23,13 @@ public:
             }
         }
         int ans = -1;
+        vector<long long>arr;
+        for(int i=0;i<nums.size();i++){
+            arr.push_back((long long)nums[i]);
+        }
         while(low<=high){
             long long mid = (low+high)/2;
-            if(isposs(mid,nums)){
+            if(isposs(mid,arr)){
                 ans = mid;
                 high = mid-1;
             }
