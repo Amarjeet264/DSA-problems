@@ -12,7 +12,6 @@ public:
         int chair = 0;
         unordered_map<int,int>mp;
         for(int idx =0;idx<ti.size();idx++){
-            cout<<ti[idx][0]<<" "<<ti[idx][1]<<" "<<ti[idx][2]<<endl;
             int i = ti[idx][2];
             while(!pq.empty()&&ti[idx][0]>=-1*pq.top().first){
                 emp.push(-pq.top().second);
