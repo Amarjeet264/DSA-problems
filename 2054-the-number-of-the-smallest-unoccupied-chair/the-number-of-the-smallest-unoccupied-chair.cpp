@@ -17,15 +17,19 @@ public:
                 emp.push(-pq.top().second);
                 pq.pop();
             }
+            int ans = -1;
             if(emp.empty()){
                 chair++;
-                mp[i] = chair;
+                ans = chair;
                 pq.push({-ti[idx][1],chair});
             }
             else{
-                mp[i] = -emp.top();
+                ans = -emp.top();
                 pq.push({-ti[idx][1],-emp.top()});
                 emp.pop();
+            }
+            if(targetFriend==i){
+                return ans;
             }
         }
         return mp[targetFriend] ;
