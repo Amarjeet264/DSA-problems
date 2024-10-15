@@ -17,12 +17,7 @@ public:
                     continue;
                 }
                 else{
-                    // int j=i;
-                    // while(j>firstone){
-                    //     swap(s[j],s[j-1]);
-                        cnt+=(i-firstone);
-                    //     j--;
-                    // }
+                    cnt+=(i-firstone);
                     firstone=firstone+1;
                     i++;
                 }
