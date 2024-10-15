@@ -14,7 +14,6 @@ public:
             else{
                 if(firstone==-1){
                     i++;
-                    continue;
                 }
                 else{
                     cnt+=(i-firstone);
