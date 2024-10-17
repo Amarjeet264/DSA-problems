@@ -1,39 +1,32 @@
 class Solution {
 public:
     int maximumSwap(int num) {
-        int ans=num;
-        string s="";
-        while(num){
-            int x=num%10;
-            s+=(x+'0');
-            num/=10;
+        string s = to_string(num);
+        vector<int>pre(s.size());
+        int maxi = 0;
+        for(int i=s.size()-1;i>=0;i--){
+            maxi = max(maxi,s[i]-'0');
+            pre[i] = maxi;
         }
-        reverse(s.begin(),s.end());
-        // cout<<s<<" ";
-        int i=s.size()-1;
-        int maxi=i;
-        int idx=-1;
-        int swapidx=-1;
-        while(i>=0){
-            if(s[i]-'0'<s[maxi]-'0'){
-                idx=i;
-                swapidx=maxi;
-            }
-            if(s[maxi]-'0'<s[i]-'0'){
-                maxi=i;
-            }
-            i--;
-        }
-        if(idx!=-1){
-            swap(s[idx],s[swapidx]);
-            ans=0;
-            int i=0;
-            while(i<s.size()){
-                ans=ans*10+(s[i]-'0');
-                i++;
+        int ele = -1;
+        int at = -1;
+        for(int i = 0;i<s.size();i++){
+            if(pre[i]>s[i]-'0'){
+                ele = pre[i];
+                at = s[i]-'0';
+                s[i] = pre[i]+'0';
+                break;
             }
         }
-        // cout<<s<<" ";
-        return ans;
+        // cout<<ele<<" "<<at<<endl;
+        for(int i=s.size()-1;i>=0;i--){
+            if(s[i]-'0'==ele){
+                s[i] = at+'0';
+                break;
+            }
+        }
+        // cout<<s<<endl;
+        // return -1;
+        return stoi(s);
     }
 };
