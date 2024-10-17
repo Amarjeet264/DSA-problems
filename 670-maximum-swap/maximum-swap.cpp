@@ -2,31 +2,20 @@ class Solution {
 public:
     int maximumSwap(int num) {
         string s = to_string(num);
-        vector<int>pre(s.size());
-        int maxi = 0;
+        vector<int>pre(s.size(),-1);
+        int idx = s.size()-1;
         for(int i=s.size()-1;i>=0;i--){
-            maxi = max(maxi,s[i]-'0');
-            pre[i] = maxi;
+            if(s[i]-'0'>s[idx]-'0'){
+                idx = i;
+            }
+            if(s[idx]!=s[i])pre[i] = idx;
         }
-        int ele = -1;
-        int at = -1;
         for(int i = 0;i<s.size();i++){
-            if(pre[i]>s[i]-'0'){
-                ele = pre[i];
-                at = s[i]-'0';
-                s[i] = pre[i]+'0';
+            if(pre[i]!=-1){
+                swap(s[i],s[pre[i]]);
                 break;
             }
         }
-        // cout<<ele<<" "<<at<<endl;
-        for(int i=s.size()-1;i>=0;i--){
-            if(s[i]-'0'==ele){
-                s[i] = at+'0';
-                break;
-            }
-        }
-        // cout<<s<<endl;
-        // return -1;
         return stoi(s);
     }
 };
