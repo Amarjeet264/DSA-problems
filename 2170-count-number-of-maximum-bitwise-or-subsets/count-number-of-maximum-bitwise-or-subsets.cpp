@@ -8,7 +8,8 @@ class Solution {
         }
         if(maxor>maxi)return 0;
         int nottake = count(nums,i+1,maxi,maxor);
-        int take = count(nums,i+1,maxi,maxor|nums[i]);
+        int take = 0;
+        if(maxor<=maxi)take = count(nums,i+1,maxi,maxor|nums[i]);
         return take+nottake;
     }
 public:
