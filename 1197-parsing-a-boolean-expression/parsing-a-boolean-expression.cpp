@@ -32,7 +32,7 @@ public:
         for(int i = 0;i<exp.size();i++){
             if(isop(exp[i])||exp[i]=='t'||exp[i]=='f'){
                 st.push(exp[i]);
-                cout<<i<<" "<<exp[i]<<endl;
+                // cout<<i<<" "<<exp[i]<<endl;
             }
             else if(exp[i]==',')continue;
             else{
@@ -45,7 +45,7 @@ public:
                 char op = st.top();
                 st.pop();
                 bool x = eval(s,op);
-                cout<<s<<" "<<op<<" "<<x<<endl;
+                // cout<<s<<" "<<op<<" "<<x<<endl;
                 st.push(x==true?'t':'f');
             }
         }
