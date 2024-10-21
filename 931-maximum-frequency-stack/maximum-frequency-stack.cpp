@@ -28,7 +28,6 @@ public:
         else{
             ele[val] -= 1;
             int newIdx = idx[val].back();
-
             st.insert({-(newF-1),{-newIdx,val}});
         }
         return val;
