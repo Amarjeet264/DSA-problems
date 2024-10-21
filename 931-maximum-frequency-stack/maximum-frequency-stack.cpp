@@ -19,16 +19,17 @@ public:
         pair<int,pair<int,int>>maxP = *st.begin();
         st.erase(maxP);
         int val = maxP.second.second;
-        ele[val] -=1;
+        int newF = -maxP.first;
         idx[val].pop_back();
-        if(ele[val]==0){
+        if(newF-1==0){
             idx.erase(val);
             ele.erase(val);
         }
         else{
+            ele[val] -= 1;
             int newIdx = idx[val].back();
 
-            st.insert({-ele[val],{-newIdx,val}});
+            st.insert({-(newF-1),{-newIdx,val}});
         }
         return val;
     }
