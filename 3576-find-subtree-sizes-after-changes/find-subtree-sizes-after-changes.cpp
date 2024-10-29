@@ -60,7 +60,6 @@ private:
         // Restore the previous ancestor in the path for backtracking
         nearest_ancestor[s[node]] = original_ancestor;
     }
-
     int dfs(int node, const vector<vector<int>>& adj, vector<int>& subtree_size) {
         subtree_size[node] = 1; // Count the current node
         for (int child : adj[node]) {
