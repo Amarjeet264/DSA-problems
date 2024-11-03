@@ -10,7 +10,6 @@ public:
                 int u = edges[j][0];
                 int v = edges[j][1];
                 double prob = succProb[j];
-
                 if (maxProb[u] * prob > maxProb[v]) {
                     maxProb[v] = maxProb[u] * prob;
                     updated = true;
