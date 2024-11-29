@@ -24,7 +24,7 @@ public:
                     int ntime;
                     if(t+1<grid[nr][nc]){
                         ntime=grid[nr][nc];
-                        if((t+1+ntime)%2){
+                        if((ntime-t-1)%2){
                             ntime++;
                         }
                     }
