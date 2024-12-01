@@ -2,8 +2,13 @@ class Solution {
 public:
     string f(auto& v) {
         string r;
-        for (auto x : v)
-            r += (x == v[0]);
+        for (auto x : v){
+            // r += (x == v[0]);
+            // cout<<x<<" ";
+            if(x==v[0])r+='1';
+            else r+='0';
+        }
+        // cout<<r<<endl;
         return r;
     };
     
