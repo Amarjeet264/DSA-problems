@@ -1,33 +1,19 @@
 class Solution {
-    bool isposs(int mid,vector<int>&nums,int maxo){
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]>mid){
-                // cout<<mid<<" ";
-                maxo=maxo-((ceil)(nums[i]/(double)mid)-1);
-                if(maxo<0){
-                    return 0;
-                }
-            }
-        }
-        return 1;
-
-    }
 public:
-    int minimumSize(vector<int>& nums, int maxo) {
-        sort(nums.begin(),nums.end());
-        int low=1;
-        int high=nums[nums.size()-1];
-        int ans=-1;
-        while(low<=high){
-            int mid=(low+high)/2;
-            if(isposs(mid,nums,maxo)){
-                ans=mid;
-                high=mid-1;
-            }
-            else{
-                low=mid+1;
-            }
+    int minimumSize(vector<int>& nums, int k) {
+        const int n=nums.size();
+    //    sort(nums.begin(), nums.end());
+        int l=1, r=*max_element(nums.begin(), nums.end()), m;
+        while(l<r){
+            m=l+(r-l)/2;
+            long long cnt=0;
+            for(int j=0; j<n && cnt<=k; j++)
+                cnt+=(nums[j]-1)/m;
+            if(cnt<=k) r=m;
+            else l=m+1;
         }
-        return ans;
+        return r;
     }
 };
+
+
